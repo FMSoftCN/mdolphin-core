@@ -1,0 +1,34 @@
+IF (ENABLE_FAST_MALLOC)
+  LIST(APPEND WTF_SOURCES
+    TCSystemAlloc.cpp
+  )
+ELSE ()
+  ADD_DEFINITIONS(-DUSE_SYSTEM_MALLOC=1)
+ENDIF(ENABLE_FAST_MALLOC)
+
+LIST(APPEND WTF_SOURCES
+    mg/MainThreadMg.cpp
+	unicode/CollatorDefault.cpp 
+
+    ThreadIdentifierDataPthreads.cpp
+    ThreadingPthreads.cpp
+)
+
+IF (WTF_USE_ICU_UNICODE)
+    LIST(APPEND WTF_SOURCES
+            unicode/icu/CollatorICU.cpp
+        )
+
+ELSEIF (WTF_USE_MINIGUI_UNICODE)
+    LIST(APPEND WTF_SOURCES
+        unicode/mg/UbidiPropsMg.c 
+        unicode/mg/UcaseMg.c
+        unicode/mg/UcharMg.c
+        unicode/mg/UidnaMg.c
+        unicode/mg/UpropsMg.c
+        unicode/mg/UstrCaseMg.c
+        unicode/mg/UtrieMg.c
+        unicode/mg/UnormMg.cpp
+        unicode/mg/UnisetMg.cpp
+    )
+ENDIF(WTF_USE_ICU_UNICODE)

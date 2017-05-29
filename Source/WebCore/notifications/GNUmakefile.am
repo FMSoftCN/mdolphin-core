@@ -1,0 +1,28 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_notifications = \
+	Notification.cpp \
+	Notification.h \
+	NotificationCenter.cpp \
+	NotificationCenter.h \
+	NotificationPresenter.h \
+	NotificationContents.h
+      $(NULL) 
+
+noinst_LTLIBRARIES=libnotifications.la
+
+libnotifications_la_SOURCES=$(WEBCORE_SOURCES_notifications)
+
+libnotifications_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libnotifications_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libnotifications_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags)  \
+      $(HILDON_CPPFLAGS)

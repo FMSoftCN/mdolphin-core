@@ -1,0 +1,58 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_wml = \
+	WMLAElement.cpp \
+	WMLAccessElement.cpp \
+	WMLAnchorElement.cpp \
+	WMLBRElement.cpp \
+	WMLCardElement.cpp \
+	WMLDoElement.cpp \
+	WMLDocument.cpp \
+	WMLElement.cpp \
+	WMLErrorHandling.cpp \
+	WMLEventHandlingElement.cpp \
+	WMLFieldSetElement.cpp \
+	WMLFormControlElement.cpp \
+	WMLGoElement.cpp \
+	WMLImageElement.cpp \
+	WMLImageLoader.cpp \
+	WMLInputElement.cpp \
+	WMLInsertedLegendElement.cpp \
+	WMLIntrinsicEvent.cpp \
+	WMLIntrinsicEventHandler.cpp \
+	WMLMetaElement.cpp \
+	WMLNoopElement.cpp \
+	WMLOnEventElement.cpp \
+	WMLPElement.cpp \
+	WMLOptGroupElement.cpp \
+	WMLOptionElement.cpp \
+	WMLPageState.cpp \
+	WMLPostfieldElement.cpp \
+	WMLPrevElement.cpp \
+	WMLRefreshElement.cpp \
+	WMLSelectElement.cpp \
+	WMLSetvarElement.cpp \
+	WMLTableElement.cpp \
+	WMLTaskElement.cpp \
+	WMLTemplateElement.cpp \
+	WMLTimerElement.cpp \
+	WMLVariables.cpp
+      $(NULL) 
+
+noinst_LTLIBRARIES=libwml.la
+
+libwml_la_SOURCES=$(WEBCORE_SOURCES_wml)
+
+libwml_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libwml_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libwml_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

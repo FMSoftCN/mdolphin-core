@@ -1,0 +1,36 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_websockets = \
+	WebSocket.cpp \
+	WebSocket.h \
+	WebSocketChannel.cpp \
+	WebSocketChannel.h \
+	WebSocketChannelClient.h \
+	WebSocketHandshake.cpp \
+	WebSocketHandshake.h \
+	WebSocketHandshakeRequest.cpp \
+	WebSocketHandshakeRequest.h
+	ThreadableWebSocketChannel.cpp \
+	ThreadableWebSocketChannel.h \
+	ThreadableWebSocketChannelClientWrapper.h \
+	WorkerThreadableWebSocketChannel.cpp \
+	WorkerThreadableWebSocketChannel.h \
+      $(NULL) 
+
+noinst_LTLIBRARIES=libwebsockets.la
+
+libwebsockets_la_SOURCES=$(WEBCORE_SOURCES_websockets)
+
+libwebsockets_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libwebsockets_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libwebsockets_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

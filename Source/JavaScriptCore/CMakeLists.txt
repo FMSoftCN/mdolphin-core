@@ -1,0 +1,234 @@
+SET(JavaScriptCore_SOURCES
+    API/JSBase.cpp
+    API/JSCallbackConstructor.cpp
+    API/JSCallbackFunction.cpp
+    API/JSCallbackObject.cpp
+    API/JSClassRef.cpp
+    API/JSContextRef.cpp
+    API/JSObjectRef.cpp
+    API/JSProfilerPrivate.cpp
+    API/JSStringRef.cpp
+    API/JSValueRef.cpp
+    API/JSWeakObjectMapRefPrivate.cpp
+    API/OpaqueJSString.cpp
+
+    bytecode/CodeBlock.cpp
+    bytecode/JumpTable.cpp
+    bytecode/Opcode.cpp
+    bytecode/SamplingTool.cpp
+    bytecode/StructureStubInfo.cpp
+
+    bytecompiler/BytecodeGenerator.cpp
+    bytecompiler/NodesCodegen.cpp
+
+    runtime/Heap.cpp
+    collector/handles/HandleHeap.cpp
+    collector/handles/HandleStack.cpp
+    runtime/MachineStackMarker.cpp
+    runtime/MarkedBlock.cpp
+    runtime/MarkedSpace.cpp
+    runtime/ConservativeSet.cpp
+    runtime/MarkStack.cpp
+
+    debugger/Debugger.cpp
+    debugger/DebuggerActivation.cpp
+    debugger/DebuggerCallFrame.cpp
+
+    interpreter/CallFrame.cpp
+    interpreter/Interpreter.cpp
+    interpreter/RegisterFile.cpp
+
+    jit/ExecutableAllocator.cpp
+    jit/JITArithmetic32_64.cpp
+    jit/JITArithmetic.cpp
+    jit/JITCall32_64.cpp
+    jit/JITCall.cpp
+    jit/JIT.cpp
+    jit/JITOpcodes32_64.cpp
+    jit/JITOpcodes.cpp
+    jit/JITPropertyAccess32_64.cpp
+    jit/JITPropertyAccess.cpp
+    jit/JITStubs.cpp
+    jit/ThunkGenerators.cpp
+
+    parser/JSParser.cpp
+    parser/Lexer.cpp
+    parser/Nodes.cpp
+    parser/Parser.cpp
+    parser/ParserArena.cpp
+    parser/SourceProviderCache.cpp
+
+    profiler/Profile.cpp
+    profiler/ProfileGenerator.cpp
+    profiler/ProfileNode.cpp
+    profiler/Profiler.cpp
+
+    runtime/ArgList.cpp
+    runtime/Arguments.cpp
+    runtime/ArrayConstructor.cpp
+    runtime/ArrayPrototype.cpp
+    runtime/BooleanConstructor.cpp
+    runtime/BooleanObject.cpp
+    runtime/BooleanPrototype.cpp
+    runtime/CallData.cpp
+    runtime/CommonIdentifiers.cpp
+    runtime/Completion.cpp
+    runtime/ConstructData.cpp
+    runtime/DateConstructor.cpp
+    runtime/DateConversion.cpp
+    runtime/DateInstance.cpp
+    runtime/DatePrototype.cpp
+    runtime/Error.cpp
+    runtime/ErrorConstructor.cpp
+    runtime/ErrorInstance.cpp
+    runtime/ErrorPrototype.cpp
+    runtime/ExceptionHelpers.cpp
+    runtime/Executable.cpp
+    runtime/FunctionConstructor.cpp
+    runtime/FunctionPrototype.cpp
+    runtime/GCActivityCallback.cpp
+    runtime/GetterSetter.cpp
+    runtime/Identifier.cpp
+    runtime/InitializeThreading.cpp
+    runtime/InternalFunction.cpp
+    runtime/JSActivation.cpp
+    runtime/JSAPIValueWrapper.cpp
+    runtime/JSArray.cpp
+    runtime/JSByteArray.cpp
+    runtime/JSCell.cpp
+    runtime/JSFunction.cpp
+    runtime/JSGlobalData.cpp
+    runtime/JSGlobalObject.cpp
+    runtime/JSGlobalObjectFunctions.cpp
+    runtime/JSLock.cpp
+    runtime/JSNotAnObject.cpp
+    runtime/JSObject.cpp
+    runtime/JSObjectWithGlobalObject.cpp
+    runtime/JSONObject.cpp
+    runtime/JSPropertyNameIterator.cpp
+    runtime/JSStaticScopeObject.cpp
+    runtime/JSString.cpp
+    runtime/JSValue.cpp
+    runtime/JSVariableObject.cpp
+    runtime/JSWrapperObject.cpp
+    runtime/JSZombie.cpp
+    runtime/LiteralParser.cpp
+    runtime/Lookup.cpp
+    runtime/MathObject.cpp
+    runtime/NativeErrorConstructor.cpp
+    runtime/NativeErrorPrototype.cpp
+    runtime/NumberConstructor.cpp
+    runtime/NumberObject.cpp
+    runtime/NumberPrototype.cpp
+    runtime/ObjectConstructor.cpp
+    runtime/ObjectPrototype.cpp
+    runtime/Operations.cpp
+    runtime/PropertyDescriptor.cpp
+    runtime/PropertyNameArray.cpp
+    runtime/PropertySlot.cpp
+    runtime/RegExp.cpp
+    runtime/RegExpCache.cpp
+    runtime/RegExpConstructor.cpp
+    runtime/RegExpObject.cpp
+    runtime/RegExpPrototype.cpp
+    runtime/RopeImpl.cpp
+    runtime/ScopeChain.cpp
+    runtime/SmallStrings.cpp
+    runtime/StrictEvalActivation.cpp
+    runtime/StringConstructor.cpp
+    runtime/StringObject.cpp
+    runtime/StringPrototype.cpp
+    runtime/StringRecursionChecker.cpp
+    runtime/Structure.cpp
+    runtime/StructureChain.cpp
+    runtime/TimeoutChecker.cpp
+    runtime/UString.cpp
+
+    yarr/YarrPattern.cpp
+    yarr/YarrInterpreter.cpp
+    yarr/YarrJIT.cpp
+    yarr/YarrSyntaxChecker.cpp
+
+    wtf/DateMath.cpp
+    wtf/PageAllocationAligned.cpp
+    wtf/PageBlock.cpp
+)
+SET(JavaScriptCore_HEADERS )
+
+SET(JavaScriptCore_LUT_FILES
+    runtime/ArrayPrototype.cpp
+    runtime/DatePrototype.cpp
+    runtime/JSONObject.cpp
+    runtime/MathObject.cpp
+    runtime/NumberConstructor.cpp
+    runtime/ObjectConstructor.cpp
+    runtime/RegExpConstructor.cpp
+    runtime/RegExpObject.cpp
+    runtime/StringPrototype.cpp
+)
+
+SET(JavaScriptCore_LIBRARIES
+    ${WTF_LIBRARY_NAME}
+)
+
+
+IF (ENABLE_GENERATOR_SOURCES)
+# GENERATOR 1-A: LUT creator
+FOREACH (_file ${JavaScriptCore_LUT_FILES})
+    GET_FILENAME_COMPONENT(_name ${_file} NAME_WE)
+    GENERATE_HASH_LUT(${JAVASCRIPTCORE_DIR}/${_file} ${DERIVED_SOURCES_JAVASCRIPTCORE_DIR}/${_name}.lut.h)
+    LIST(APPEND JavaScriptCore_HEADERS ${DERIVED_SOURCES_JAVASCRIPTCORE_DIR}/${_name}.lut.h)
+ENDFOREACH ()
+
+
+# GENERATOR 1-B: particular LUT creator (for 1 file only)
+GENERATE_HASH_LUT(${JAVASCRIPTCORE_DIR}/parser/Keywords.table ${DERIVED_SOURCES_JAVASCRIPTCORE_DIR}/Lexer.lut.h MAIN_DEPENDENCY)
+LIST(APPEND JavaScriptCore_HEADERS ${DERIVED_SOURCES_JAVASCRIPTCORE_DIR}/Lexer.lut.h)
+
+#GENERATOR: "RegExpJitTables.h": tables used by Yarr
+ADD_CUSTOM_COMMAND(
+    OUTPUT ${DERIVED_SOURCES_JAVASCRIPTCORE_DIR}/RegExpJitTables.h
+    MAIN_DEPENDENCY ${JAVASCRIPTCORE_DIR}/create_regex_tables
+    COMMAND ${PYTHON_EXECUTABLE} ${JAVASCRIPTCORE_DIR}/create_regex_tables > ${DERIVED_SOURCES_JAVASCRIPTCORE_DIR}/RegExpJitTables.h
+    VERBATIM)
+ADD_SOURCE_DEPENDENCIES(${JAVASCRIPTCORE_DIR}/yarr/YarrPattern.cpp ${DERIVED_SOURCES_JAVASCRIPTCORE_DIR}/RegExpJitTables.h)
+
+ENDIF (ENABLE_GENERATOR_SOURCES)
+
+
+IF (WTF_CPU_ARM)
+    LIST(APPEND JavaScriptCore_SOURCES
+        assembler/ARMAssembler.cpp
+        assembler/ARMv7Assembler.cpp
+        assembler/MacroAssemblerARM.cpp
+    )
+ELSEIF (WTF_CPU_MIPS)
+ELSEIF (WTF_CPU_X86)
+ELSEIF (WTF_CPU_X86_64)
+ELSE ()
+    MESSAGE(FATAL_ERROR "Unknown CPU")
+ENDIF ()
+
+
+INCLUDE_IF_EXISTS(${JAVASCRIPTCORE_DIR}/CMakeLists${PORT}.txt)
+WEBKIT_ADD_SUBDIRECTORY(wtf)
+# ----------------------------------------------------------------------------- 
+# Generate jsc
+# -----------------------------------------------------------------------------
+IF (ENABLE_TOOLS)
+SET(JSC_HEADERS )
+SET(JSC_SOURCES jsc.cpp )
+
+INCLUDE_DIRECTORIES(./ ${mDolphin_INCLUDE_DIRECTORIES})
+ADD_EXECUTABLE(${JSC_EXECUTABLE_NAME} ${JSC_HEADERS} ${JSC_SOURCES} ${mDolphin_SOURCES} ${JavaScriptCore_SOURCES})
+TARGET_LINK_LIBRARIES(${JSC_EXECUTABLE_NAME} ${mDolphin_LIBRARIES})
+
+IF (JSC_LINK_FLAGS)
+    ADD_TARGET_PROPERTIES(${JSC_EXECUTABLE_NAME} LINK_FLAGS "${JSC_LINK_FLAGS}")
+ENDIF (JSC_LINK_FLAGS)
+ENDIF (ENABLE_TOOLS)
+
+# ----------------------------------------------------------------------------- 
+# Append source to upper directory 
+# -----------------------------------------------------------------------------
+WEBKIT_APPEND_SOURCES(${JavaScriptCore_SOURCES})

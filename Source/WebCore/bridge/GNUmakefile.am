@@ -1,0 +1,63 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_bridge = \
+	-I$(srcdir)/..//WebCore/bridge \
+	-I$(srcdir)/..//WebCore/c \
+	-I$(srcdir)/..//WebCore/jni/jsc \
+	-I$(srcdir)/..//WebCore/jsc \
+	Bridge.h \
+	IdentifierRep.cpp \
+	IdentifierRep.h \
+	NP_jsobject.cpp \
+	NP_jsobject.h \
+	c/CRuntimeObject.cpp \
+	c/CRuntimeObject.h \
+	c/c_class.cpp \
+	c/c_class.h \
+	c/c_instance.cpp \
+	c/c_instance.h \
+	c/c_runtime.cpp \
+	c/c_runtime.h \
+	c/c_utility.cpp \
+	c/c_utility.h \
+	jni/JNIBridge.h \
+	jni/JNIUtility.h \
+	jni/jni_jsobject.h \
+	jni/jsc/JNIBridgeJSC.h \
+	jni/jsc/JavaClassJSC.h \
+	jni/jsc/JavaInstanceJSC.h \
+	jsc/BridgeJSC.h \
+	jsc/BridgeJSC.cpp \
+	npapi.h \
+	npruntime.cpp \
+	npruntime.h \
+	npruntime_impl.h \
+	npruntime_internal.h \
+	npruntime_priv.h \
+	runtime_array.cpp \
+	runtime_array.h \
+	runtime_method.cpp \
+	runtime_method.h \
+	runtime_object.cpp \
+	runtime_object.h \
+	runtime_root.cpp \
+	runtime_root.h \
+      $(NULL) 
+
+noinst_LTLIBRARIES=libbridge.la
+
+libbridge_la_SOURCES=$(WEBCORE_SOURCES_bridge)
+
+libbridge_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libbridge_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libbridge_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

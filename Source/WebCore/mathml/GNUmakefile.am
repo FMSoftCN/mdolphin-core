@@ -1,0 +1,44 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_mathml = \
+	MathMLElement.cpp \
+	MathMLElement.h \
+	MathMLInlineContainerElement.cpp \
+	MathMLInlineContainerElement.h  \
+	MathMLMathElement.cpp \
+	MathMLMathElement.h \
+	MathMLTextElement.cpp \
+	MathMLTextElement.h \
+	RenderMathMLBlock.cpp \
+	RenderMathMLBlock.h \
+	RenderMathMLFraction.cpp \
+	RenderMathMLFraction.h \
+	RenderMathMLMath.cpp \
+	RenderMathMLMath.h \
+	RenderMathMLOperator.cpp \
+	RenderMathMLOperator.h \
+	RenderMathMLRow.cpp \
+	RenderMathMLRow.h \
+	RenderMathMLSubSup.cpp \
+	RenderMathMLSubSup.h \
+	RenderMathMLUnderOver.cpp \
+	RenderMathMLUnderOver.h
+      $(NULL) 
+
+noinst_LTLIBRARIES=libmathml.la
+
+libmathml_la_SOURCES=$(WEBCORE_SOURCES_mathml)
+
+libmathml_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libmathml_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libmathml_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

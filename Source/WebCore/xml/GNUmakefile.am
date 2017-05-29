@@ -1,0 +1,79 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_xml = \
+	DOMParser.cpp \
+	DOMParser.h \
+	XMLHttpRequest.cpp \
+	XMLHttpRequest.h \
+	XMLHttpRequestException.h \
+	XMLHttpRequestProgressEvent.h \
+	XMLHttpRequestProgressEventThrottle.cpp \
+	XMLHttpRequestProgressEventThrottle.h \
+	XMLHttpRequestUpload.cpp \
+	XMLHttpRequestUpload.h \
+	XMLSerializer.cpp \
+	XMLSerializer.h \
+	XPathResult.idl \
+	NativeXPathNSResolver.cpp \
+	NativeXPathNSResolver.h \
+	XPathEvaluator.cpp \
+	XPathEvaluator.h \
+	XPathException.h \
+	XPathExpression.cpp \
+	XPathExpression.h \
+	XPathExpressionNode.cpp \
+	XPathExpressionNode.h \
+	XPathFunctions.cpp \
+	XPathFunctions.h \
+	XPathNSResolver.cpp \
+	XPathNSResolver.h \
+	XPathNamespace.cpp \
+	XPathNamespace.h \
+	XPathNodeSet.cpp \
+	XPathNodeSet.h \
+	XPathParser.cpp \
+	XPathParser.h \
+	XPathPath.cpp \
+	XPathPath.h \
+	XPathPredicate.cpp \
+	XPathPredicate.h \
+	XPathResult.cpp \
+	XPathResult.h \
+	XPathStep.cpp \
+	XPathStep.h \
+	XPathUtil.cpp \
+	XPathUtil.h \
+	XPathValue.cpp \
+	XPathValue.h \
+	XPathVariableReference.cpp \
+	XPathVariableReference.h \
+	XSLImportRule.cpp \
+	XSLImportRule.h \
+	XSLStyleSheetLibxslt.cpp \
+	XSLStyleSheet.h \
+	XSLTExtensions.cpp \
+	XSLTExtensions.h \
+	XSLTProcessor.cpp \
+	XSLTProcessorLibxslt.cpp \
+	XSLTProcessor.h \
+	XSLTUnicodeSort.cpp \
+	XSLTUnicodeSort.h
+      $(NULL) 
+
+noinst_LTLIBRARIES=libxml.la
+
+libxml_la_SOURCES=$(WEBCORE_SOURCES_xml)
+
+libxml_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libxml_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libxml_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

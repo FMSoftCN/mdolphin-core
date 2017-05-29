@@ -1,0 +1,22 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_WebCore.gyp = \
+      $(NULL) 
+
+noinst_LTLIBRARIES=libWebCore.gyp.la
+
+libWebCore.gyp_la_SOURCES=$(WEBCORE_SOURCES_WebCore.gyp)
+
+libWebCore.gyp_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libWebCore.gyp_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libWebCore.gyp_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

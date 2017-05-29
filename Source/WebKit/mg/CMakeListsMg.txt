@@ -1,0 +1,46 @@
+SET(WebKit_SOURCES
+    mg/control/IUnknown.cpp
+    mg/control/MDDefaultWebCustomDelegate.cpp
+    mg/control/MDDefaultWebDownloadDelegate.cpp
+    mg/control/MDDefaultWebFrameLoadDelegate.cpp
+    mg/control/MDDefaultWebHistoryDelegate.cpp
+    mg/control/MDDefaultWebPolicyDelegate.cpp
+    mg/control/MDDefaultWebUIDelegate.cpp
+    mg/control/MDInnerResource.cpp
+    mg/control/MDNativeBindingManager.cpp
+    mg/control/MDResourceManager.cpp
+    mg/control/MDResourceRequest.cpp
+    mg/control/MDResourceResponse.cpp
+    mg/control/MDWebBackForwardList.cpp
+    mg/control/MDWebDownload.cpp
+    mg/control/MDWebFrame.cpp
+    mg/control/MDWebSettings.cpp
+    mg/control/MDWebURL.cpp
+    mg/control/MDWebView.cpp
+    mg/control/MDolphinDelegates.cpp
+    mg/control/MDolphinEncoding.cpp
+    mg/control/MDolphinFunctions.cpp
+    mg/WebCoreSupport/ChromeClientMg.cpp
+    mg/WebCoreSupport/ContextMenuClientMg.cpp
+    mg/WebCoreSupport/DomSerializer.cpp
+    mg/WebCoreSupport/DownloadResourceClient.cpp
+    mg/WebCoreSupport/DragClientMg.cpp
+    mg/WebCoreSupport/EditorClientMg.cpp
+    mg/WebCoreSupport/FrameLoaderClientMg.cpp
+    mg/WebCoreSupport/InspectorClientMg.cpp
+)
+
+INSTALL (FILES  "${PROJECT_BINARY_DIR}/mdconfig.h" DESTINATION include/${CMAKE_PROJECT_NAME})
+INSTALL (DIRECTORY "${WEBKIT_DIR}/mg/control/"
+        DESTINATION include/${CMAKE_PROJECT_NAME}
+        FILES_MATCHING PATTERN "IMDWeb*.h"
+                       PATTERN "mdolphin.h"
+                       PATTERN "mdolphin_*.h"
+                       PATTERN "MDWebURL.h"
+                       PATTERN "IUnknown.h"
+                       PATTERN "MDResourceRe*.h"
+                       PATTERN "license" EXCLUDE
+                       PATTERN "resource" EXCLUDE
+                       PATTERN ".svn" EXCLUDE
+                       )
+

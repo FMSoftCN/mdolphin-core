@@ -1,0 +1,160 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_css = \
+	CSSBorderImageValue.cpp \
+	CSSBorderImageValue.h \
+	CSSCanvasValue.cpp \
+	CSSCanvasValue.h \
+	CSSCharsetRule.cpp \
+	CSSCharsetRule.h \
+	CSSComputedStyleDeclaration.cpp \
+	CSSComputedStyleDeclaration.h \
+	CSSCursorImageValue.cpp \
+	CSSCursorImageValue.h \
+	CSSFontFace.cpp \
+	CSSFontFace.h \
+	CSSFontFaceRule.cpp \
+	CSSFontFaceRule.h \
+	CSSFontFaceSource.cpp \
+	CSSFontFaceSource.h \
+	CSSFontFaceSrcValue.cpp \
+	CSSFontFaceSrcValue.h \
+	CSSFontSelector.cpp \
+	CSSFontSelector.h \
+	CSSFunctionValue.cpp \
+	CSSFunctionValue.h \
+	CSSGradientValue.cpp \
+	CSSGradientValue.h \
+	CSSHelper.cpp \
+	CSSHelper.h \
+	CSSImageGeneratorValue.cpp \
+	CSSImageGeneratorValue.h \
+	CSSImageValue.cpp \
+	CSSImageValue.h \
+	CSSImportRule.cpp \
+	CSSImportRule.h \
+	CSSInheritedValue.cpp \
+	CSSInheritedValue.h \
+	CSSInitialValue.cpp \
+	CSSInitialValue.h \
+	CSSMediaRule.cpp \
+	CSSMediaRule.h \
+	CSSMutableStyleDeclaration.cpp \
+	CSSMutableStyleDeclaration.h \
+	CSSNamespace.h \
+	CSSPageRule.cpp \
+	CSSPageRule.h \
+	CSSParser.cpp \
+	CSSParser.h \
+	CSSParserValues.cpp \
+	CSSParserValues.h \
+	CSSPrimitiveValue.cpp \
+	CSSPrimitiveValue.h \
+	CSSPrimitiveValueMappings.h \
+	CSSProperty.cpp \
+	CSSProperty.h \
+	CSSPropertyLonghand.cpp \
+	CSSPropertyLonghand.h \
+	CSSQuirkPrimitiveValue.h \
+	CSSReflectValue.cpp \
+	CSSReflectValue.h \
+	CSSReflectionDirection.h \
+	CSSRule.cpp \
+	CSSRule.h \
+	CSSRuleList.cpp \
+	CSSRuleList.h \
+	CSSSegmentedFontFace.cpp \
+	CSSSegmentedFontFace.h \
+	CSSSelector.cpp \
+	CSSSelector.h \
+	CSSSelectorList.cpp \
+	CSSSelectorList.h \
+	CSSStyleDeclaration.cpp \
+	CSSStyleDeclaration.h \
+	CSSStyleRule.cpp \
+	CSSStyleRule.h \
+	CSSStyleSelector.cpp \
+	CSSStyleSelector.h \
+	CSSStyleSheet.cpp \
+	CSSStyleSheet.h \
+	CSSTimingFunctionValue.cpp \
+	CSSTimingFunctionValue.h \
+	CSSUnicodeRangeValue.cpp \
+	CSSUnicodeRangeValue.h \
+	CSSUnknownRule.h \
+	CSSValue.h \
+	CSSValueList.cpp \
+	CSSValueList.h \
+	CSSVariableDependentValue.cpp \
+	CSSVariableDependentValue.h \
+	CSSVariablesDeclaration.cpp \
+	CSSVariablesDeclaration.h \
+	CSSVariablesRule.cpp \
+	CSSVariablesRule.h \
+	Counter.h \
+	DashboardRegion.h \
+	FontFamilyValue.cpp \
+	FontFamilyValue.h \
+	FontValue.cpp \
+	FontValue.h \
+	MediaFeatureNames.cpp \
+	MediaFeatureNames.h \
+	MediaList.cpp \
+	MediaList.h \
+	MediaQuery.cpp \
+	MediaQueryEvaluator.cpp \
+	MediaQueryEvaluator.h \
+	MediaQueryExp.cpp \
+	MediaQueryExp.h \
+	MediaQuery.h \
+	Pair.h \
+	Rect.h \
+	RGBColor.cpp \
+	RGBColor.h \
+	ShadowValue.cpp \
+	ShadowValue.h \
+	StyleBase.cpp \
+	StyleBase.h \
+	StyleList.cpp \
+	StyleList.h \
+	StyleMedia.cpp \
+	StyleMedia.h \
+	StyleSheet.cpp \
+	StyleSheet.h \
+	StyleSheetList.cpp \
+	StyleSheetList.h \
+	WebKitCSSKeyframeRule.cpp \
+	WebKitCSSKeyframeRule.h \
+	WebKitCSSKeyframesRule.cpp \
+	WebKitCSSKeyframesRule.h \
+	WebKitCSSMatrix.cpp \
+	WebKitCSSMatrix.h \
+	WebKitCSSTransformValue.cpp \
+	WebKitCSSTransformValue.h  \
+    $(NULL)
+
+if SVG_FLAGS
+WEBCORE_SOURCES_css += \
+    SVGCSSComputedStyleDeclaration.cpp \
+    SVGCSSParser.cpp \
+    SVGCSSStyleSelector.cpp \
+    $(NULL)
+endif
+
+noinst_LTLIBRARIES=libcss.la
+
+libcss_la_SOURCES=$(WEBCORE_SOURCES_css)
+
+libcss_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libcss_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libcss_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

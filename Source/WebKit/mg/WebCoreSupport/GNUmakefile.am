@@ -1,0 +1,38 @@
+BASEINCLUDE=../
+include ../../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_platform = \
+	ChromeClientMg.cpp \
+	ChromeClientMg.h \
+	ContextMenuClientMg.cpp \
+	ContextMenuClientMg.h \
+	DragClientMg.cpp \
+	DragClientMg.h \
+	EditorClientMg.cpp \
+	EditorClientMg.h \
+	FrameLoaderClientMg.cpp \
+	FrameLoaderClientMg.h \
+	InspectorClientMg.cpp \
+	InspectorClientMg.h \
+	DomSerializer.cpp \
+	DomSerializer.h \
+	DownloadResourceClient.cpp \
+	DownloadResourceClient.h \
+	$(NULL) 
+
+noinst_LTLIBRARIES = libWebCoreSupport.la
+
+libWebCoreSupport_la_SOURCES=$(WEBCORE_SOURCES_platform)
+
+libWebCoreSupport_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libWebCoreSupport_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libWebCoreSupport_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

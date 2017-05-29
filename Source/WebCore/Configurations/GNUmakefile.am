@@ -1,0 +1,22 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_Configurations = \
+      $(NULL) 
+
+noinst_LTLIBRARIES=libConfigurations.la
+
+libConfigurations_la_SOURCES=$(WEBCORE_SOURCES_Configurations)
+
+libConfigurations_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libConfigurations_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libConfigurations_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

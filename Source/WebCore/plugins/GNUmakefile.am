@@ -1,0 +1,68 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_plugins = \
+	MimeType.cpp \
+	MimeType.h \
+	MimeTypeArray.cpp \
+	MimeTypeArray.h \
+	Plugin.cpp \
+	Plugin.h \
+	PluginArray.cpp \
+	PluginArray.h \
+	PluginData.cpp \
+	PluginData.h \
+	PluginDatabase.cpp \
+	PluginDatabase.h \
+	PluginDatabaseClient.h \
+	PluginDebug.cpp \
+	PluginDebug.h \
+	PluginInfoStore.cpp \
+	PluginInfoStore.h \
+	PluginMainThreadScheduler.cpp \
+	PluginMainThreadScheduler.h \
+	PluginPackage.cpp \
+	PluginPackage.h \
+	PluginQuirkSet.h \
+	PluginStream.cpp \
+	PluginStream.h \
+	PluginWidget.h \
+	PluginView.cpp \
+	PluginView.h \
+	npapi.cpp \
+	npfunctions.h \
+	$(NULL) 
+
+if ENABLE_PLUGIN
+WEBCORE_SOURCES_MG_plugins = \
+	mg/PluginApiMg.cpp \
+	mg/PluginApiMg.h \
+	mg/PluginDataMg.cpp  \
+	mg/PluginPackageMg.cpp  \
+	mg/PluginViewMg.cpp \
+	$(NULL) 
+else
+WEBCORE_SOURCES_MG_plugins = \
+	PluginDataNone.cpp \
+	PluginViewNone.cpp \
+	PluginPackageNone.cpp \
+	$(NULL) 
+endif
+
+noinst_LTLIBRARIES=libplugins.la
+
+libplugins_la_SOURCES=$(WEBCORE_SOURCES_plugins) $(WEBCORE_SOURCES_MG_plugins)
+
+libplugins_la_CXXFLAGS = \
+    -DENABLE_PLUGIN_PACKAGE_SIMPLE_HASH=1 \
+     $(global_cxxflags) \
+     $(corekit_cflags)
+
+libplugins_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libplugins_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

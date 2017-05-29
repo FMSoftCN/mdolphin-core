@@ -1,0 +1,129 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_editing = \
+	AppendNodeCommand.cpp \
+	AppendNodeCommand.h \
+	ApplyStyleCommand.cpp \
+	ApplyStyleCommand.h \
+	BreakBlockquoteCommand.cpp \
+	BreakBlockquoteCommand.h \
+	CompositeEditCommand.cpp \
+	CompositeEditCommand.h \
+	CreateLinkCommand.cpp \
+	CreateLinkCommand.h \
+	DeleteButton.cpp \
+	DeleteButton.h \
+	DeleteButtonController.cpp \
+	DeleteButtonController.h \
+	DeleteFromTextNodeCommand.cpp \
+	DeleteFromTextNodeCommand.h \
+	DeleteSelectionCommand.cpp \
+	DeleteSelectionCommand.h \
+	EditAction.h \
+	EditCommand.cpp \
+	EditCommand.h \
+	Editor.cpp \
+	Editor.h \
+	EditorCommand.cpp \
+	EditorDeleteAction.h \
+	EditorInsertAction.h \
+	FormatBlockCommand.cpp \
+	FormatBlockCommand.h \
+	HTMLInterchange.cpp \
+	HTMLInterchange.h \
+	IndentOutdentCommand.cpp \
+	IndentOutdentCommand.h \
+	InsertIntoTextNodeCommand.cpp \
+	InsertIntoTextNodeCommand.h \
+	InsertLineBreakCommand.cpp \
+	InsertLineBreakCommand.h \
+	InsertListCommand.cpp \
+	InsertListCommand.h \
+	InsertNodeBeforeCommand.cpp \
+	InsertNodeBeforeCommand.h \
+	InsertParagraphSeparatorCommand.cpp \
+	InsertParagraphSeparatorCommand.h \
+	InsertTextCommand.cpp \
+	InsertTextCommand.h \
+	JoinTextNodesCommand.cpp \
+	JoinTextNodesCommand.h \
+	MergeIdenticalElementsCommand.cpp \
+	MergeIdenticalElementsCommand.h \
+	ModifySelectionListLevel.cpp \
+	ModifySelectionListLevel.h \
+	MoveSelectionCommand.cpp \
+	MoveSelectionCommand.h \
+	RemoveCSSPropertyCommand.cpp \
+	RemoveCSSPropertyCommand.h \
+	RemoveFormatCommand.cpp \
+	RemoveFormatCommand.h \
+	RemoveNodeCommand.cpp \
+	RemoveNodeCommand.h \
+	RemoveNodePreservingChildrenCommand.cpp \
+	RemoveNodePreservingChildrenCommand.h \
+	ReplaceNodeWithSpanCommand.cpp \
+	ReplaceNodeWithSpanCommand.h \
+	ReplaceSelectionCommand.cpp \
+	ReplaceSelectionCommand.h \
+	SelectionController.cpp \
+	SelectionController.h \
+	SetNodeAttributeCommand.cpp \
+	SetNodeAttributeCommand.h \
+	SmartReplace.h \
+	SplitElementCommand.cpp \
+	SplitElementCommand.h \
+	SplitTextNodeCommand.cpp \
+	SplitTextNodeCommand.h \
+	SplitTextNodeContainingElementCommand.cpp \
+	SplitTextNodeContainingElementCommand.h \
+	TextAffinity.h \
+	TextGranularity.h \
+	TextIterator.cpp \
+	TextIterator.h \
+	TypingCommand.cpp \
+	TypingCommand.h \
+	UnlinkCommand.cpp \
+	UnlinkCommand.h \
+	VisiblePosition.cpp \
+	VisiblePosition.h \
+	VisibleSelection.cpp \
+	VisibleSelection.h \
+	WrapContentsInDummySpanCommand.cpp \
+	WrapContentsInDummySpanCommand.h \
+	htmlediting.cpp \
+	htmlediting.h \
+	markup.cpp \
+	markup.h \
+	visible_units.cpp \
+	visible_units.h \
+    $(NULL) 
+
+noinst_LTLIBRARIES=libediting.la
+
+if USE_MINIGUI_UNICODE
+WEBCORE_SOURCES_editing_MG=mg/SmartReplaceMg.cpp
+webcore_dist+=SmartReplaceICU.cpp SmartReplace.cpp
+endif
+
+if USE_ICU_UNICODE
+WEBCORE_SOURCES_editing_MG=SmartReplaceICU.cpp \
+						   SmartReplace.cpp
+webcore_dist+=mg/SmartReplaceMg.cpp 
+endif
+
+
+libediting_la_SOURCES=$(WEBCORE_SOURCES_editing) $(WEBCORE_SOURCES_editing_MG)
+
+libediting_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libediting_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libediting_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

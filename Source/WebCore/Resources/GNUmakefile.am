@@ -1,0 +1,30 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_Resources = \
+	svg/SVGExternalResourcesRequired.cpp \
+	svg/SVGExternalResourcesRequired.h \
+	$(WebCore)/textAreaResizeCorner.png \
+	$(WebCore)/nullPlugin.png \
+	$(WebCore)/urlIcon.png \
+	$(WebCore)/missingImage.png \
+	$(WebCore)/panIcon.png \
+	$(WebCore)/deleteButton.png
+      $(NULL) 
+
+noinst_LTLIBRARIES=libResources.la
+
+libResources_la_SOURCES=$(WEBCORE_SOURCES_Resources)
+
+libResources_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libResources_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libResources_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

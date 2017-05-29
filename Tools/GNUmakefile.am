@@ -1,0 +1,118 @@
+
+noinst_PROGRAMS += \
+	Programs/MDolphinLauncher \
+	Programs/MDolphinLauncherWebView \
+	Programs/DumpRenderTree
+
+# MDolphinLauncher
+Programs_MDolphinLauncher_CPPFLAGS = \
+	-I$(top_srcdir)/Source/WebKit/mg \
+	-I$(top_srcdir)/Source/WebKit/mg/control \
+	-I$(top_srcdir)/Source/WebKit/mg/WebCoreSupport \
+	-I$(top_builddir)/Source/WebKit/mg \
+	$(global_cppflags) \
+	$(javascriptcore_cppflags)
+
+Programs_MDolphinLauncher_SOURCES = \
+	Tools/MDolphinLauncher/main.c
+
+Programs_MDolphinLauncher_CFLAGS = \
+	-fno-strict-aliasing \
+	$(global_cflags) 
+
+Programs_MDolphinLauncher_LDADD = \
+	libmdolphin.la \
+	-lminigui_ths -lcurl -ljpeg -lpng -lz -lxml2 -lxslt -lpthread -lfreetype -lstdc++
+
+
+Programs_MDolphinLauncher_LDFLAGS = \
+	-no-fast-install \
+	-no-install
+
+Programs_MDolphinLauncherWebView_SOURCES = \
+	Tools/MDolphinLauncher/mainWebView.cpp
+
+Programs_MDolphinLauncherWebView_CFLAGS = \
+	-fno-strict-aliasing \
+	$(global_cflags) 
+
+Programs_MDolphinLauncherWebView_LDADD = \
+	libmdolphin.la \
+	-lminigui_ths -lcurl -ljpeg -lpng -lz -lxml2 -lxslt -lpthread -lfreetype -lstdc++
+
+
+Programs_MDolphinLauncherWebView_LDFLAGS = \
+	-no-fast-install \
+	-no-install
+
+
+Programs_MDolphinLauncherWebView_CPPFLAGS = \
+	-I$(top_srcdir)/Source/WebKit/mg \
+	-I$(top_srcdir)/Source/WebKit/mg/control \
+	-I$(top_srcdir)/Source/WebKit/mg/WebCoreSupport \
+	-I$(top_builddir)/Source/WebKit/mg \
+	$(global_cppflags) \
+	$(javascriptcore_cppflags)
+
+# DumpRenderTree
+dumprendertree_cppflags := \
+	-I$(top_srcdir)/Tools/DumpRenderTree \
+	-I$(top_srcdir)/Tools/DumpRenderTree/mg \
+	-I$(top_srcdir)/Source/WebKit/mg/control \
+	-I$(top_builddir)/Source/WebKit/mg \
+	$(corekit_cppflags)
+
+Programs_DumpRenderTree_CPPFLAGS = $(dumprendertree_cppflags)
+
+Programs_DumpRenderTree_SOURCES = \
+	Tools/DumpRenderTree/DumpRenderTree.h \
+	Tools/DumpRenderTree/DumpRenderTreePrefix.h \
+	Tools/DumpRenderTree/GCController.cpp \
+	Tools/DumpRenderTree/GCController.h \
+	Tools/DumpRenderTree/JavaScriptThreading.h \
+	Tools/DumpRenderTree/LayoutTestController.cpp \
+	Tools/DumpRenderTree/LayoutTestController.h \
+	Tools/DumpRenderTree/PixelDumpSupport.h \
+	Tools/DumpRenderTree/WorkQueue.cpp \
+	Tools/DumpRenderTree/WorkQueue.h \
+	Tools/DumpRenderTree/WorkQueueItem.h \
+	Tools/DumpRenderTree/config.h \
+	Tools/DumpRenderTree/mg/DumpRenderTreeMg.h \
+	Tools/DumpRenderTree/mg/DumpRenderTree.cpp \
+	Tools/DumpRenderTree/mg/GCControllerMg.cpp \
+	Tools/DumpRenderTree/mg/LayoutTestControllerMg.cpp \
+	Tools/DumpRenderTree/mg/WorkQueueItemMg.cpp \
+	Tools/DumpRenderTree/mg/UIDelegate.h \
+	Tools/DumpRenderTree/mg/FrameLoadDelegate.h \
+	Tools/DumpRenderTree/mg/UIDelegate.cpp  \
+	Tools/DumpRenderTree/mg/FrameLoadDelegate.cpp \
+	Tools/DumpRenderTree/mg/EventSender.h \
+	Tools/DumpRenderTree/mg/EventSender.cpp 
+
+Programs_DumpRenderTree_CXXFLAGS = \
+	$(global_cxxflags) \
+	$(dumprendertree_cppflags) \
+	$(Programs_DumpRenderTree_CFLAGS)
+
+Programs_DumpRenderTree_CFLAGS = \
+	-fno-strict-aliasing \
+	$(dumprendertree_cppflags) \
+	$(global_cflags) \
+	$(GLOBALDEPS_CFLAGS) 
+
+Programs_DumpRenderTree_LDADD = \
+	libmdolphin.la \
+	-lminigui_ths -lcurl -ljpeg -lpng -lz -lxml2 -lxslt -lpthread -lfreetype -lstdc++ \
+	$(GLOBALDEPS_LIBS) \
+	$(FREETYPE_LIBS)
+
+Programs_DumpRenderTree_LDFLAGS = \
+	-no-fast-install \
+	-no-install
+
+# clean target
+CLEANFILES += \
+	Programs/MDolphinLauncher \
+	Programs/MDolphinLauncherWebView 
+	Programs/DumpRenderTree 
+

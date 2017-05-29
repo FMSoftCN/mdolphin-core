@@ -1,0 +1,57 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_workers = \
+	SharedWorkerRepository.h \
+	AbstractWorker.cpp \
+	AbstractWorker.h \
+	DedicatedWorkerContext.cpp \
+	DedicatedWorkerContext.h \
+	DedicatedWorkerThread.cpp \
+	DedicatedWorkerThread.h \
+	GenericWorkerTask.h \
+	Worker.cpp \
+	Worker.h \
+	WorkerContext.cpp \
+	WorkerContext.h \
+	WorkerContextProxy.h \
+	WorkerLoaderProxy.h \
+	WorkerLocation.cpp \
+	WorkerLocation.h \
+	WorkerMessagingProxy.cpp \
+	WorkerMessagingProxy.h \
+	WorkerObjectProxy.h \
+	WorkerReportingProxy.h \
+	WorkerRunLoop.cpp \
+	WorkerRunLoop.h \
+	WorkerScriptLoader.cpp \
+	WorkerScriptLoader.h \
+	WorkerScriptLoaderClient.h \
+	WorkerThread.cpp \
+	WorkerThread.h
+	DefaultSharedWorkerRepository.cpp \
+	DefaultSharedWorkerRepository.h \
+	SharedWorker.cpp \
+	SharedWorker.h \
+	SharedWorkerContext.cpp \
+	SharedWorkerContext.h \
+	SharedWorkerThread.cpp \
+	SharedWorkerThread.h
+      $(NULL) 
+
+noinst_LTLIBRARIES=libworkers.la
+
+libworkers_la_SOURCES=$(WEBCORE_SOURCES_workers)
+
+libworkers_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libworkers_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libworkers_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

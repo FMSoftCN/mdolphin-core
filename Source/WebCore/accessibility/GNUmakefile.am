@@ -1,0 +1,69 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_accessibility = \
+        AXObjectCache.cpp \
+	AXObjectCache.h \
+	AccessibilityARIAGrid.cpp \
+	AccessibilityARIAGrid.h \
+	AccessibilityARIAGridCell.cpp \
+	AccessibilityARIAGridCell.h \
+	AccessibilityARIAGridRow.cpp \
+	AccessibilityARIAGridRow.h \
+	AccessibilityImageMapLink.cpp \
+	AccessibilityImageMapLink.h \
+	AccessibilityList.cpp \
+	AccessibilityList.h \
+	AccessibilityListBox.cpp \
+	AccessibilityListBox.h \
+	AccessibilityListBoxOption.cpp \
+	AccessibilityListBoxOption.h \
+	AccessibilityMediaControls.cpp \
+	AccessibilityMediaControls.h \
+	AccessibilityMenuList.cpp \
+	AccessibilityMenuList.h \
+	AccessibilityMenuListPopup.cpp \
+	AccessibilityMenuListPopup.h \
+	AccessibilityMenuListOption.cpp \
+	AccessibilityMenuListOption.h \
+	AccessibilityObject.cpp \
+	AccessibilityObject.h \
+	AccessibilityProgressIndicator.cpp \
+	AccessibilityProgressIndicator.h \
+	AccessibilityRenderObject.cpp \
+	AccessibilityRenderObject.h \
+	AccessibilityScrollbar.cpp \
+	AccessibilityScrollbar.h \
+	AccessibilitySlider.cpp \
+	AccessibilitySlider.h \
+	AccessibilityTable.cpp \
+	AccessibilityTable.h \
+	AccessibilityTableCell.cpp \
+	AccessibilityTableCell.h \
+	AccessibilityTableColumn.cpp \
+	AccessibilityTableColumn.h \
+	AccessibilityTableHeaderContainer.cpp \
+	AccessibilityTableHeaderContainer.h \
+	AccessibilityTableRow.cpp \
+	AccessibilityTableRow.h \
+      $(NULL) 
+
+#mg/AXObjectCacheAtk.cpp #	gtk/AccessibilityObjectAtk.cpp #	gtk/AccessibilityObjectWrapperAtk.cpp #	gtk/AccessibilityObjectWrapperAtk.h 
+
+
+noinst_LTLIBRARIES=libaccessibility.la
+
+libaccessibility_la_SOURCES=$(WEBCORE_SOURCES_accessibility)
+
+libaccessibility_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libaccessibility_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libaccessibility_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

@@ -1,0 +1,106 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.65])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_CONFIG_SRCDIR([DiskCache/DiskCacheTestMain.cpp])
+AC_CONFIG_HEADERS([config.h])
+
+AM_INIT_AUTOMAKE(UnitTest, 3.0.4)
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_CC
+
+#dnl needed for cross-compiling
+#AC_CANONICAL_SYSTEM
+
+# Checks for libraries.
+dnl ========================================================================
+dnl check for libminigui
+have_libminigui="no"
+AC_CHECK_HEADERS(minigui/common.h, have_libminigui=yes, foo=bar)
+
+dnl ========================================================================
+dnl check for non-UNIX system
+unix="yes"
+AC_CHECK_DECLS(__NOUNIX__, unix="no", foo=bar)
+
+dnl ========================================================================
+dnl check for run-time mode of MiniGUI
+dnl ========================================================================
+procs_version="no"
+AC_CHECK_DECLS(_MGRM_PROCESSES, procs_version="yes", foo=bar, [#include <minigui/common.h>])
+
+AC_MSG_CHECKING([whether to enable FILESYSTEM support])
+AC_ARG_ENABLE(filesystem,                                                                                             
+              AC_HELP_STRING([--enable-filesystem],
+                             [build enable file system <default=yes>]),
+                             [], enable_filesystem=yes)
+AC_MSG_RESULT([$enable_filesystem])
+
+AM_CONDITIONAL([ENABLE_FILESYSTEM],[test "$enable_filesystem" = "yes"])
+
+
+if test "$enable_filesystem"="yes"; then
+    AC_DEFINE([ENABLE_FILESYSTEM], [1], [Define if FILESYSTEM is supported.])
+fi
+
+AC_ARG_WITH(lang,
+        [  --with-lang=[en/zhcn/zhtw]])
+
+case "$with_lang" in
+  zhcn)
+    AC_DEFINE(_LANG_ZHCN, 1, 
+            [Use text strings for locale zh_CN in GB2312])
+    ;;
+  zhtw)
+    AC_DEFINE(_LANG_ZHTW, 1, 
+            [Use text strings for locale zh_TW in BIG5])
+    ;;
+  *)
+    AC_DEFINE(_LANG_EN, 1, 
+            [Use text strings for locale en_US in ISO8859-1])
+    ;;
+esac
+
+
+dnl ========================================================================
+dnl Write Output
+
+if test "$ac_cv_prog_gcc" = "yes"; then
+    CFLAGS="$CFLAGS -Wall -Wstrict-prototypes -pipe"
+fi
+
+
+AM_CONDITIONAL(MGRM_PROCESSES, test "x$procs_version" = "xyes")
+
+PKG_CHECK_MODULES([MINIGUI], [minigui >= 3.0.10])
+PKG_CHECK_MODULES([MDOLPHIN], [mdolphin >= 3.0.4])
+PKG_CHECK_MODULES([LIBCURL], [libcurl >= 4.2.0])
+LIBS="$LIBS $MINIGUI_LIBS $MDOLPHIN_LIBS $LIBCURL_LIBS"
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
+AC_HEADER_TIME
+AC_CHECK_HEADERS(sys/time.h unistd.h)
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_HEADER_STDBOOL
+AC_C_CONST
+
+# Checks for library functions.
+
+AC_OUTPUT(
+Makefile
+DiskCache/Makefile
+)
+
+if test "x$have_libminigui" != "xyes"; then
+    AC_MSG_WARN([
+        MiniGUI is not properly installed on the system. You need 
+        MiniGUI Ver 3.0.0 or later for building this package. 
+        Please configure and install MiniGUI Ver 3.0.0 first.
+    ])
+fi

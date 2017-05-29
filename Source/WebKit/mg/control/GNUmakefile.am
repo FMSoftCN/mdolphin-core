@@ -1,0 +1,91 @@
+include ../../../GNUmakefile_shared
+NULL=
+
+if USE_LICENSE
+CONTROL_LICENSE = \
+	license/loadSplash.h \
+	license/loadSplash.cpp \
+	license/sharedTimerLoadSplash.h \
+	license/sharedTimerLoadSplash.cpp \
+	license/rc4Decode.h \
+	license/rc4Decode.cpp \
+	license/waterMark.h \
+	license/waterMark.cpp \
+	license/ctimer.h \
+	license/ctimer.cpp \
+	$(NULL)
+else
+CONTROL_LICENSE = \
+	$(NULL)
+endif
+
+WEBCORE_SOURCES_platform = \
+	MDolphinEncoding.h \
+	MDolphinFunctions.cpp \
+	MDolphinEncoding.cpp \
+	IMDWebFrameLoadDelegate.h \
+	MDDefaultWebFrameLoadDelegate.cpp \
+	MDDefaultWebFrameLoadDelegate.h \
+	IMDWebPolicyDelegate.h \
+	MDDefaultWebPolicyDelegate.cpp \
+	MDDefaultWebPolicyDelegate.h \
+	IMDWebDownloadDelegate.h \
+   	IMDWebDownload.h \
+   	MDDefaultWebDownloadDelegate.cpp \
+   	MDDefaultWebDownloadDelegate.h \
+	MDWebDownload.cpp  \
+	MDWebDownload.h \
+	MDWebFrame.cpp \
+	MDWebFrame.h \
+	IMDWebFrame.h \
+	MDWebView.cpp \
+	MDWebView.h \
+	IMDWebView.h \
+	IUnknown.cpp \
+	IUnknown.h \
+	IMDWebHistoryDelegate.h \
+	IMDWebCustomDelegate.h \
+	MDDefaultWebCustomDelegate.cpp \
+	MDolphinDelegates.h \
+	MDolphinDelegates.cpp \
+	MDDefaultWebHistoryDelegate.h \
+	MDDefaultWebHistoryDelegate.cpp \
+	MDWebBackForwardList.h \
+	MDWebBackForwardList.cpp \
+	MDWebSettings.h \
+	MDWebSettings.cpp \
+	IMDWebBackForwardList.h \
+	MDResourceResponse.h \
+	MDResourceResponse.cpp \
+	MDResourceRequest.h \
+	MDResourceRequest.cpp \
+	MDDefaultWebUIDelegate.cpp \
+	MDDefaultWebUIDelegate.h \
+	\
+	MDNativeBindingManager.cpp \
+	MDNativeBindingManager.h \
+	MDResourceManager.cpp \
+	MDResourceManager.h \
+	MDInnerResource.h \
+	MDInnerResource.cpp \
+	MDWebURL.h \
+	MDWebURL.cpp \
+    $(CONTROL_LICENSE) \
+	$(NULL) 
+
+noinst_LTLIBRARIES = libcontrol.la
+
+libcontrol_la_SOURCES=$(WEBCORE_SOURCES_platform)
+
+libcontrol_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libcontrol_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libcontrol_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

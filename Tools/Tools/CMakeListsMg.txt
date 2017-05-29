@@ -1,0 +1,51 @@
+SET(MDolphinLauncher_SOURCES
+    ${TOOLS_DIR}/MDolphinLauncher/main.c
+)
+
+SET(MDolphinCPPLauncher_SOURCES
+    ${TOOLS_DIR}/MDolphinLauncher/mainWebView.cpp
+)
+
+SET(DumpRenderTree_SOURCES
+	${TOOLS_DIR}/DumpRenderTree/GCController.cpp
+	${TOOLS_DIR}/DumpRenderTree/LayoutTestController.cpp
+	${TOOLS_DIR}/DumpRenderTree/WorkQueue.cpp
+	${TOOLS_DIR}/DumpRenderTree/mg/DumpRenderTree.cpp
+	${TOOLS_DIR}/DumpRenderTree/mg/GCControllerMg.cpp
+	${TOOLS_DIR}/DumpRenderTree/mg/LayoutTestControllerMg.cpp
+	${TOOLS_DIR}/DumpRenderTree/mg/WorkQueueItemMg.cpp
+	${TOOLS_DIR}/DumpRenderTree/mg/UIDelegate.cpp
+	${TOOLS_DIR}/DumpRenderTree/mg/FrameLoadDelegate.cpp
+	${TOOLS_DIR}/DumpRenderTree/mg/EventSender.cpp 
+)
+
+SET(Tools_LIBRARIES
+    ${mDolphin_LIBRARY_NAME}
+)
+
+SET(Tools_INCLUDE_DIRECTORIES
+    "${CMAKE_BINARY_DIR}"
+    "${WEBKIT_DIR}/mg/control"
+)
+
+#SET(MDolphinLauncher_LINK_FLAGS
+#    ${MINIGUI_LDFLAGS}
+#)
+
+# Override data directory. We always want to get a fresh theme.
+REMOVE_DEFINITIONS(-DDATA_DIR=\"${DATA_DIR}\")
+ADD_DEFINITIONS(-DDATA_DIR=\"${BUILD_DATA_DIR}\")
+
+INCLUDE_DIRECTORIES(${Tools_INCLUDE_DIRECTORIES})
+
+SET(MDOLPHIN_LAUNCHER1 Programs/MDolphinLauncher)
+ADD_EXECUTABLE(${MDOLPHIN_LAUNCHER1} ${MDolphinLauncher_SOURCES})
+TARGET_LINK_LIBRARIES(${MDOLPHIN_LAUNCHER1} ${Tools_LIBRARIES})
+
+SET(MDOLPHIN_LAUNCHER2 Programs/MDolphinCppLauncher)
+ADD_EXECUTABLE(${MDOLPHIN_LAUNCHER2} ${MDolphinLauncher_SOURCES})
+TARGET_LINK_LIBRARIES(${MDOLPHIN_LAUNCHER2} ${Tools_LIBRARIES})
+
+SET(DUMP_RENDER_TREE Programs/DumpRenderTree)
+ADD_EXECUTABLE(${DUMP_RENDER_TREE} ${MDolphinLauncher_SOURCES})
+TARGET_LINK_LIBRARIES(${DUMP_RENDER_TREE} ${Tools_LIBRARIES})

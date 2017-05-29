@@ -1,0 +1,10 @@
+{
+    global:
+        extern "C++" {
+            MDWebURL::*;
+        };
+        md*;
+        JS*;
+        NPN_*;
+    local: *;
+};

@@ -1,0 +1,90 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+if ENABLE_DATABASE
+WEBCORE_SOURCES_storage = \
+	ChangeVersionWrapper.cpp \
+	ChangeVersionWrapper.h \
+	Database.cpp \
+	Database.h \
+	DatabaseAuthorizer.cpp \
+	DatabaseAuthorizer.h \
+	DatabaseCallback.h \
+	DatabaseDetails.h \
+	DatabaseSync.cpp \
+	DatabaseSync.h \
+	DatabaseTask.cpp \
+	DatabaseTask.h \
+	DatabaseThread.cpp \
+	DatabaseThread.h \
+	DatabaseTracker.cpp \
+	DatabaseTracker.h \
+	DatabaseTrackerClient.h \
+	OriginQuotaManager.cpp \
+	OriginQuotaManager.h \
+	OriginUsageRecord.cpp \
+	OriginUsageRecord.h \
+	SQLError.h \
+	SQLResultSet.cpp \
+	SQLResultSet.h \
+	SQLResultSetRowList.cpp \
+	SQLResultSetRowList.h \
+	SQLStatement.cpp \
+	SQLStatement.h \
+	SQLStatementCallback.h \
+	SQLStatementErrorCallback.h \
+	SQLTransaction.cpp \
+	SQLTransaction.h \
+	SQLTransactionCallback.h \
+	SQLTransactionClient.cpp \
+	SQLTransactionClient.h \
+	SQLTransactionCoordinator.h \
+	SQLTransactionCoordinator.cpp \
+	SQLTransactionErrorCallback.h \
+	SQLTransactionSync.cpp \
+	SQLTransactionSync.h \
+	SQLTransactionSyncCallback.h \
+	LocalStorageTask.cpp \
+	LocalStorageTask.h \
+	LocalStorageThread.cpp \
+	LocalStorageThread.h \
+	Storage.cpp \
+	Storage.h \
+	StorageArea.h \
+	StorageAreaImpl.cpp \
+	StorageAreaImpl.h \
+	StorageAreaSync.cpp \
+	StorageAreaSync.h \
+	StorageEvent.cpp \
+	StorageEventDispatcher.h \
+	StorageEventDispatcher.cpp \
+	StorageEvent.h \
+	StorageMap.cpp \
+	StorageMap.h \
+	StorageNamespace.cpp \
+	StorageNamespace.h \
+	StorageNamespaceImpl.cpp \
+	StorageNamespaceImpl.h \
+	StorageSyncManager.cpp \
+	StorageSyncManager.h
+      $(NULL) 
+else
+WEBCORE_SOURCES_storage = 
+endif
+
+noinst_LTLIBRARIES=libstorage.la
+
+libstorage_la_SOURCES=$(WEBCORE_SOURCES_storage)
+
+libstorage_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libstorage_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libstorage_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

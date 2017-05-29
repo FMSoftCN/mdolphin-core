@@ -1,0 +1,108 @@
+NULL=
+
+if USE_LICENSE
+CONTROL_LICENSE = \
+	Source/WebKit/mg/control/license/loadSplash.h \
+	Source/WebKit/mg/control/license/loadSplash.cpp \
+	Source/WebKit/mg/control/license/sharedTimerLoadSplash.h \
+	Source/WebKit/mg/control/license/sharedTimerLoadSplash.cpp \
+	Source/WebKit/mg/control/license/rc4Decode.h \
+	Source/WebKit/mg/control/license/rc4Decode.cpp \
+	Source/WebKit/mg/control/license/waterMark.h \
+	Source/WebKit/mg/control/license/waterMark.cpp \
+	Source/WebKit/mg/control/license/ctimer.h \
+	Source/WebKit/mg/control/license/ctimer.cpp \
+	$(NULL)
+else
+CONTROL_LICENSE = \
+	$(NULL)
+endif
+
+webkitmg_sources += \
+	Source/WebKit/mg/WebCoreSupport/ChromeClientMg.cpp \
+	Source/WebKit/mg/WebCoreSupport/ChromeClientMg.h \
+	Source/WebKit/mg/WebCoreSupport/ContextMenuClientMg.cpp \
+	Source/WebKit/mg/WebCoreSupport/ContextMenuClientMg.h \
+	Source/WebKit/mg/WebCoreSupport/DragClientMg.cpp \
+	Source/WebKit/mg/WebCoreSupport/DragClientMg.h \
+	Source/WebKit/mg/WebCoreSupport/EditorClientMg.cpp \
+	Source/WebKit/mg/WebCoreSupport/EditorClientMg.h \
+	Source/WebKit/mg/WebCoreSupport/FrameLoaderClientMg.cpp \
+	Source/WebKit/mg/WebCoreSupport/FrameLoaderClientMg.h \
+	Source/WebKit/mg/WebCoreSupport/InspectorClientMg.cpp \
+	Source/WebKit/mg/WebCoreSupport/InspectorClientMg.h \
+	Source/WebKit/mg/WebCoreSupport/DomSerializer.cpp \
+	Source/WebKit/mg/WebCoreSupport/DomSerializer.h \
+	Source/WebKit/mg/WebCoreSupport/DownloadResourceClient.cpp \
+	Source/WebKit/mg/WebCoreSupport/DownloadResourceClient.h \
+	Source/WebKit/mg/control/MDolphinEncoding.h \
+	Source/WebKit/mg/control/MDolphinFunctions.cpp \
+	Source/WebKit/mg/control/MDolphinEncoding.cpp \
+	Source/WebKit/mg/control/IMDWebFrameLoadDelegate.h \
+	Source/WebKit/mg/control/MDDefaultWebFrameLoadDelegate.cpp \
+	Source/WebKit/mg/control/MDDefaultWebFrameLoadDelegate.h \
+	Source/WebKit/mg/control/IMDWebPolicyDelegate.h \
+	Source/WebKit/mg/control/MDDefaultWebPolicyDelegate.cpp \
+	Source/WebKit/mg/control/MDDefaultWebPolicyDelegate.h \
+	Source/WebKit/mg/control/IMDWebDownloadDelegate.h \
+   	Source/WebKit/mg/control/IMDWebDownload.h \
+   	Source/WebKit/mg/control/MDDefaultWebDownloadDelegate.cpp \
+   	Source/WebKit/mg/control/MDDefaultWebDownloadDelegate.h \
+	Source/WebKit/mg/control/MDWebDownload.cpp  \
+	Source/WebKit/mg/control/MDWebDownload.h \
+	Source/WebKit/mg/control/MDWebFrame.cpp \
+	Source/WebKit/mg/control/MDWebFrame.h \
+	Source/WebKit/mg/control/IMDWebFrame.h \
+	Source/WebKit/mg/control/MDWebView.cpp \
+	Source/WebKit/mg/control/MDWebView.h \
+	Source/WebKit/mg/control/IMDWebView.h \
+	Source/WebKit/mg/control/IUnknown.cpp \
+	Source/WebKit/mg/control/IUnknown.h \
+	Source/WebKit/mg/control/IMDWebHistoryDelegate.h \
+	Source/WebKit/mg/control/IMDWebCustomDelegate.h \
+	Source/WebKit/mg/control/MDDefaultWebCustomDelegate.cpp \
+	Source/WebKit/mg/control/MDolphinDelegates.h \
+	Source/WebKit/mg/control/MDolphinDelegates.cpp \
+	Source/WebKit/mg/control/MDDefaultWebHistoryDelegate.h \
+	Source/WebKit/mg/control/MDDefaultWebHistoryDelegate.cpp \
+	Source/WebKit/mg/control/MDWebBackForwardList.h \
+	Source/WebKit/mg/control/MDWebBackForwardList.cpp \
+	Source/WebKit/mg/control/MDWebSettings.h \
+	Source/WebKit/mg/control/MDWebSettings.cpp \
+	Source/WebKit/mg/control/IMDWebBackForwardList.h \
+	Source/WebKit/mg/control/MDResourceResponse.h \
+	Source/WebKit/mg/control/MDResourceResponse.cpp \
+	Source/WebKit/mg/control/MDResourceRequest.h \
+	Source/WebKit/mg/control/MDResourceRequest.cpp \
+	Source/WebKit/mg/control/MDDefaultWebUIDelegate.cpp \
+	Source/WebKit/mg/control/MDDefaultWebUIDelegate.h \
+	Source/WebKit/mg/control/MDNativeBindingManager.cpp \
+	Source/WebKit/mg/control/MDNativeBindingManager.h \
+	Source/WebKit/mg/control/MDResourceManager.cpp \
+	Source/WebKit/mg/control/MDResourceManager.h \
+	Source/WebKit/mg/control/MDInnerResource.h \
+	Source/WebKit/mg/control/MDInnerResource.cpp \
+	Source/WebKit/mg/control/MDWebURL.h \
+	Source/WebKit/mg/control/MDWebURL.cpp \
+	Source/WebKit/mg/control/IMDWebInspector.h \
+	Source/WebKit/mg/control/MDWebInspector.cpp \
+	Source/WebKit/mg/control/MDWebInspector.h \
+    $(CONTROL_LICENSE) \
+	$(NULL) 
+
+noinst_LTLIBRARIES += \
+    libwebkitmg.la
+
+libwebkitmg_la_SOURCES = \
+    $(webcoremg_sources) \
+    $(webkitmg_sources)
+
+libwebkitmg_la_CPPFLAGS = \
+	-ISource/WebKit/mg/control \
+	-ISource/WebKit/mg/control/license \
+	-ISource/WebKit/mg/WebCoreSupport \
+    $(global_cxxflags) \
+	$(global_cppflags) \
+	$(webcore_cppflags) \
+	$(webcoremg_cppflags) \
+    $(javascriptcore_cppflags)

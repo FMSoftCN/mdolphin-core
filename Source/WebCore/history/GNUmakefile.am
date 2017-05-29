@@ -1,0 +1,33 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_history = \
+	BackForwardList.cpp \
+	BackForwardList.h \
+	CachedFrame.cpp \
+	CachedFrame.h \
+	CachedFramePlatformData.h \
+	CachedPage.cpp \
+	CachedPage.h \
+	HistoryItem.cpp \
+	HistoryItem.h \
+	PageCache.cpp \
+	PageCache.h \
+      $(NULL) 
+
+noinst_LTLIBRARIES=libhistory.la
+
+libhistory_la_SOURCES=$(WEBCORE_SOURCES_history)
+
+libhistory_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libhistory_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libhistory_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

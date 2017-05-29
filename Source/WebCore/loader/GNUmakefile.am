@@ -1,0 +1,153 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_loader = \
+	Cache.cpp \
+	Cache.h \
+	CachePolicy.h \
+	CachedCSSStyleSheet.cpp \
+	CachedCSSStyleSheet.h \
+	CachedFont.cpp \
+	CachedFont.h \
+	CachedImage.cpp \
+	CachedImage.h \
+	CachedResource.cpp \
+	CachedResource.h \
+	CachedResourceClient.h \
+	CachedResourceClientWalker.cpp \
+	CachedResourceClientWalker.h \
+	CachedResourceHandle.cpp \
+	CachedResourceHandle.h \
+	CachedScript.cpp \
+	CachedScript.h \
+	CachedXBLDocument.h \
+	CachedXSLStyleSheet.cpp \
+	CachedXSLStyleSheet.h \
+	CrossOriginAccessControl.cpp \
+	CrossOriginAccessControl.h \
+	CrossOriginPreflightResultCache.cpp \
+	CrossOriginPreflightResultCache.h \
+	DocLoader.cpp \
+	DocLoader.h \
+	DocumentLoader.cpp \
+	DocumentLoader.h \
+	DocumentThreadableLoader.cpp \
+	DocumentThreadableLoader.h \
+	DocumentWriter.cpp \
+	DocumentWriter.h \
+	EmptyClients.h \
+	FTPDirectoryDocument.cpp \
+	FTPDirectoryDocument.h \
+	FTPDirectoryParser.cpp \
+	FTPDirectoryParser.h \
+	FormState.cpp \
+	FormState.h \
+	FrameLoader.cpp \
+	FrameLoader.h \
+	FrameLoaderClient.h \
+	FrameLoaderTypes.h \
+	HistoryController.cpp \
+	HistoryController.h \
+	ImageDocument.cpp \
+	ImageDocument.h \
+	ImageLoader.cpp \
+	ImageLoader.h \
+	MainResourceLoader.cpp \
+	MainResourceLoader.h \
+	MediaDocument.cpp \
+	MediaDocument.h \
+	NavigationAction.cpp \
+	NavigationAction.h \
+	NetscapePlugInStreamLoader.cpp \
+	NetscapePlugInStreamLoader.h \
+	PlaceholderDocument.cpp \
+	PlaceholderDocument.h \
+	PluginDocument.cpp \
+	PluginDocument.h \
+	PolicyCallback.cpp \
+	PolicyCallback.h \
+	PolicyChecker.cpp \
+	PolicyChecker.h \
+	ProgressTracker.cpp \
+	ProgressTracker.h \
+	RedirectScheduler.cpp \
+	RedirectScheduler.h \
+	Request.cpp \
+	Request.h \
+	ResourceLoader.cpp \
+	ResourceLoader.h \
+	ResourceLoadNotifier.cpp \
+	ResourceLoadNotifier.h \
+	SubresourceLoader.cpp \
+	SubresourceLoader.h \
+	SubresourceLoaderClient.h \
+	SubstituteData.h \
+	SubstituteResource.h \
+	TextDocument.cpp \
+	TextDocument.h \
+	TextResourceDecoder.cpp \
+	TextResourceDecoder.h \
+	ThreadableLoader.cpp \
+	ThreadableLoader.h \
+	ThreadableLoaderClient.h \
+	ThreadableLoaderClientWrapper.h \
+	WorkerThreadableLoader.cpp \
+	WorkerThreadableLoader.h \
+	archive/Archive.h \
+	archive/ArchiveFactory.cpp \
+	archive/ArchiveFactory.h \
+	archive/ArchiveResource.cpp \
+	archive/ArchiveResource.h \
+	archive/ArchiveResourceCollection.cpp \
+	archive/ArchiveResourceCollection.h \
+	icon/IconFetcher.h \
+	icon/IconLoader.cpp \
+	icon/IconLoader.h \
+	loader.cpp \
+	loader.h \
+	appcache/DOMApplicationCache.idl
+	appcache/ApplicationCache.cpp \
+	appcache/ApplicationCache.h \
+	appcache/ApplicationCacheGroup.cpp \
+	appcache/ApplicationCacheGroup.h \
+	appcache/ApplicationCacheHost.cpp \
+	appcache/ApplicationCacheHost.h \
+	appcache/ApplicationCacheResource.cpp \
+	appcache/ApplicationCacheResource.h \
+	appcache/ApplicationCacheStorage.cpp \
+	appcache/ApplicationCacheStorage.h \
+	appcache/DOMApplicationCache.cpp \
+	appcache/DOMApplicationCache.h \
+	appcache/ManifestParser.cpp \
+	appcache/ManifestParser.h
+      $(NULL) 
+
+if ENABLE_ICONDATABASE
+WEBCORE_SOURCES_icon_loader = \
+	icon/IconDatabase.cpp \
+	icon/IconDatabase.h \
+	icon/IconDatabaseClient.h \
+	icon/IconRecord.cpp \
+	icon/IconRecord.h \
+	icon/PageURLRecord.cpp \
+	icon/PageURLRecord.h
+else
+WEBCORE_SOURCES_icon_loader = \
+	icon/IconDatabaseNone.cpp
+endif
+noinst_LTLIBRARIES=libloader.la
+
+libloader_la_SOURCES=$(WEBCORE_SOURCES_loader) $(WEBCORE_SOURCES_icon_loader)
+
+libloader_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libloader_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libloader_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

@@ -1,0 +1,138 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_page = \
+	BarInfo.cpp \
+	BarInfo.h \
+	Chrome.cpp \
+	Chrome.h \
+	ChromeClient.h \
+	Console.cpp \
+	Console.h \
+	ContextMenuClient.h \
+	ContextMenuController.cpp \
+	ContextMenuController.h \
+	ContextMenuProvider.h \
+	Coordinates.h \
+	DOMSelection.cpp \
+	DOMSelection.h \
+	DOMTimer.cpp \
+	DOMTimer.h \
+	DOMWindow.cpp \
+	DOMWindow.h \
+	DragActions.h \
+	DragClient.h \
+	DragController.cpp \
+	DragController.h \
+	EditorClient.h \
+	EventHandler.cpp \
+	EventHandler.h \
+	EventSource.cpp \
+	EventSource.h \
+	FocusController.cpp \
+	FocusController.h \
+	FocusDirection.h \
+	Frame.cpp \
+	Frame.h \
+	FrameLoadRequest.h \
+	FrameTree.cpp \
+	FrameTree.h \
+	FrameView.cpp \
+	FrameView.h \
+	Geolocation.cpp \
+	Geolocation.h \
+	GeolocationController.cpp \
+	GeolocationController.h \
+	GeolocationControllerClient.h \
+	GeolocationError.h \
+	GeolocationPosition.h \
+	GeolocationPositionCache.cpp \
+	GeolocationPositionCache.h \
+	Geoposition.h \
+	HaltablePlugin.h \
+	History.cpp \
+	History.h \
+	Location.cpp \
+	Location.h \
+	MediaCanStartListener.h \
+	MouseEventWithHitTestResults.cpp \
+	MouseEventWithHitTestResults.h \
+	Navigator.cpp \
+	Navigator.h \
+	NavigatorBase.cpp \
+	NavigatorBase.h \
+	OriginAccessEntry.cpp \
+	OriginAccessEntry.h \
+	Page.cpp \
+	Page.h \
+	PageGroup.cpp \
+	PageGroup.h \
+  PageGroupLoadDeferrer.cpp \
+  PageGroupLoadDeferrer.h \
+	PluginHalter.cpp \
+	PluginHalter.h \
+	PluginHalterClient.h \
+	PositionCallback.h \
+	PositionError.h \
+	PositionErrorCallback.h \
+	PositionOptions.h \
+	PrintContext.cpp \
+	PrintContext.h \
+	Screen.cpp \
+	Screen.h \
+	SecurityOrigin.cpp \
+	SecurityOrigin.h \
+	SecurityOriginHash.h \
+	Settings.cpp \
+	Settings.h \
+	SpatialNavigation.cpp \
+	SpatialNavigation.h \
+	UserContentURLPattern.cpp \
+	UserContentURLPattern.h \
+	UserScript.h \
+	UserScriptTypes.h \
+	UserStyleSheet.h \
+	UserStyleSheetTypes.h \
+	WebKitPoint.h \
+	WindowFeatures.cpp \
+	WindowFeatures.h \
+	XSSAuditor.cpp \
+	XSSAuditor.h \
+	ZoomMode.h \
+	animation/AnimationBase.cpp \
+	animation/AnimationBase.h \
+	animation/AnimationController.cpp \
+	animation/AnimationController.h \
+	animation/AnimationControllerPrivate.h \
+	animation/CompositeAnimation.cpp \
+	animation/CompositeAnimation.h \
+	animation/ImplicitAnimation.cpp \
+	animation/ImplicitAnimation.h \
+	animation/KeyframeAnimation.cpp \
+	animation/KeyframeAnimation.h \
+	WorkerNavigator.cpp \
+	WorkerNavigator.h \
+      $(NULL) 
+
+WEBCORE_SOURCES_MG_page = \
+	mg/DragControllerMg.cpp \
+	mg/EventHandleMg.cpp \
+	mg/FrameMg.cpp \
+       $(NULL) 
+
+noinst_LTLIBRARIES=libpage.la
+
+libpage_la_SOURCES=$(WEBCORE_SOURCES_page) $(WEBCORE_SOURCES_MG_page)
+
+libpage_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libpage_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libpage_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

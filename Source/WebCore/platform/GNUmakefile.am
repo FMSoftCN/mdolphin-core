@@ -1,0 +1,504 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+
+WEBCORE_SOURCES_platform = \
+	icu/unicode/platform.h \
+	Arena.cpp \
+	Arena.h \
+	AutodrainedPool.h \
+	ContentType.cpp \
+	ContentType.h \
+	ContextMenu.cpp \
+	ContextMenu.h \
+	ContextMenuItem.h \
+	Cookie.h \
+	CookieJar.h \
+	CrossThreadCopier.cpp \
+	CrossThreadCopier.h \
+	Cursor.h \
+	DeprecatedPtrList.h \
+	DeprecatedPtrListImpl.cpp \
+	DeprecatedPtrListImpl.h \
+	DragData.cpp \
+	DragData.h \
+	DragImage.cpp \
+	DragImage.h \
+	EventLoop.h \
+	FileChooser.cpp \
+	FileChooser.h \
+	FileSystem.h \
+	FloatConversion.h \
+	GeolocationService.cpp \
+	GeolocationService.h \
+	HostWindow.h \
+	KeyboardCodes.h \
+	KURL.cpp \
+	KURL.h \
+	KURLHash.h \
+	Language.h \
+	Length.cpp \
+	Length.h \
+	LengthBox.h \
+	LengthSize.h \
+	LinkHash.cpp \
+	LinkHash.h \
+	LocalizedStrings.h \
+	Logging.cpp \
+	Logging.h \
+	MIMETypeRegistry.cpp \
+	MIMETypeRegistry.h \
+	mock/GeolocationServiceMock.cpp \
+	mock/GeolocationServiceMock.h \
+	NotImplemented.h \
+	Pasteboard.h \
+	PlatformKeyboardEvent.h \
+	PlatformMenuDescription.h \
+	PlatformMouseEvent.h \
+	PlatformScreen.h \
+	PlatformWheelEvent.h \
+	PopupMenu.h \
+	PopupMenuClient.h \
+	PopupMenuStyle.h \
+	PurgeableBuffer.h \
+	SSLKeyGenerator.h \
+	ScrollTypes.h \
+	ScrollView.cpp \
+	ScrollView.h \
+	Scrollbar.cpp \
+	Scrollbar.h \
+	ScrollbarClient.h \
+	ScrollbarTheme.h \
+	ScrollbarThemeComposite.cpp \
+	ScrollbarThemeComposite.h \
+	SearchPopupMenu.h \
+	SecureTextInput.h \
+	SharedBuffer.cpp \
+	SharedBuffer.h \
+	SharedTimer.h \
+	Sound.h \
+	StaticConstructors.h \
+	SuddenTermination.h \
+	SystemTime.h \
+	ThemeTypes.h \
+	ThreadCheck.h \
+	ThreadGlobalData.cpp \
+	ThreadGlobalData.h \
+	ThreadTimers.cpp \
+	ThreadTimers.h \
+	Timer.cpp \
+	Timer.h \
+	TreeShared.h \
+	UUID.cpp \
+	UUID.h \
+	Widget.cpp \
+	Widget.h \
+	WindowsKeyboardCodes.h \
+	animation/Animation.cpp \
+	animation/Animation.h \
+	animation/AnimationList.cpp \
+	animation/AnimationList.h \
+	animation/TimingFunction.h \
+	graphics/BitmapImage.cpp \
+	graphics/BitmapImage.h \
+	graphics/Color.cpp \
+	graphics/Color.h \
+	graphics/ColorSpace.h \
+	graphics/DashArray.h \
+	graphics/FloatPoint.cpp \
+	graphics/FloatPoint.h \
+	graphics/FloatPoint3D.cpp \
+	graphics/FloatPoint3D.h \
+	graphics/FloatQuad.cpp \
+	graphics/FloatQuad.h \
+	graphics/FloatRect.cpp \
+	graphics/FloatRect.h \
+	graphics/FloatSize.cpp \
+	graphics/FloatSize.h \
+	graphics/Font.cpp \
+	graphics/Font.h \
+	graphics/FontCache.cpp \
+	graphics/FontCache.h \
+	graphics/FontData.cpp \
+	graphics/FontData.h \
+	graphics/FontDescription.cpp \
+	graphics/FontDescription.h \
+	graphics/FontFallbackList.cpp \
+	graphics/FontFallbackList.h \
+	graphics/FontFamily.cpp \
+	graphics/FontFamily.h \
+	graphics/FontFastPath.cpp \
+	graphics/FontRenderingMode.h \
+	graphics/FontSelector.h \
+	graphics/FontSmoothingMode.h \
+	graphics/FontTraitsMask.h \
+	graphics/GeneratedImage.cpp \
+	graphics/GeneratedImage.h \
+	graphics/Generator.h \
+	graphics/GlyphBuffer.h \
+	graphics/GlyphMetricsMap.h \
+	graphics/GlyphPageTreeNode.cpp \
+	graphics/GlyphPageTreeNode.h \
+	graphics/Gradient.cpp \
+	graphics/Gradient.h \
+	graphics/GraphicsContext.cpp \
+	graphics/GraphicsContext.h \
+	graphics/GraphicsContextPrivate.h \
+	graphics/GraphicsLayer.h \
+	graphics/GraphicsTypes.cpp \
+	graphics/GraphicsTypes.h \
+	graphics/Icon.h \
+	graphics/Image.cpp \
+	graphics/Image.h \
+	graphics/ImageBuffer.cpp \
+	graphics/ImageBuffer.h \
+	graphics/ImageObserver.h \
+	graphics/ImageSource.cpp \
+	graphics/ImageSource.h \
+	graphics/IntPoint.h \
+	graphics/IntPointHash.h \
+	graphics/IntRect.cpp \
+	graphics/IntRect.h \
+	graphics/IntSize.h \
+	graphics/IntSizeHash.h \
+	graphics/MediaPlayer.h \
+	graphics/Path.cpp \
+	graphics/Path.h \
+	graphics/PathTraversalState.cpp \
+	graphics/PathTraversalState.h \
+	graphics/Pattern.cpp \
+	graphics/Pattern.h \
+	graphics/Pen.cpp \
+	graphics/Pen.h \
+	graphics/SegmentedFontData.cpp \
+	graphics/SegmentedFontData.h \
+	graphics/SimpleFontData.cpp \
+	graphics/SimpleFontData.h \
+	graphics/StringTruncator.cpp \
+	graphics/StringTruncator.h \
+	graphics/StrokeStyleApplier.h \
+	graphics/TextRenderingMode.h \
+	graphics/TextRun.h \
+	graphics/TypesettingFeatures.h \
+	graphics/UnitBezier.h \
+	graphics/WidthIterator.cpp \
+	graphics/WidthIterator.h \
+	graphics/transforms/AffineTransform.cpp \
+	graphics/transforms/AffineTransform.h \
+	graphics/transforms/IdentityTransformOperation.h \
+	graphics/transforms/MatrixTransformOperation.cpp \
+	graphics/transforms/MatrixTransformOperation.h \
+	graphics/transforms/Matrix3DTransformOperation.cpp \
+	graphics/transforms/Matrix3DTransformOperation.h \
+	graphics/transforms/PerspectiveTransformOperation.cpp \
+	graphics/transforms/PerspectiveTransformOperation.h \
+	graphics/transforms/RotateTransformOperation.cpp \
+	graphics/transforms/RotateTransformOperation.h \
+	graphics/transforms/ScaleTransformOperation.cpp \
+	graphics/transforms/ScaleTransformOperation.h \
+	graphics/transforms/SkewTransformOperation.cpp \
+	graphics/transforms/SkewTransformOperation.h \
+	graphics/transforms/TransformOperation.h \
+	graphics/transforms/TransformOperations.cpp \
+	graphics/transforms/TransformOperations.h \
+	graphics/transforms/TransformationMatrix.cpp \
+	graphics/transforms/TransformationMatrix.h \
+	graphics/transforms/TranslateTransformOperation.cpp \
+	graphics/transforms/TranslateTransformOperation.h \
+	network/AuthenticationChallengeBase.cpp \
+	network/AuthenticationChallengeBase.h \
+	network/AuthenticationClient.h \
+	network/Credential.cpp \
+	network/Credential.h \
+	network/CredentialStorage.cpp \
+	network/CredentialStorage.h \
+	network/DNS.h \
+	network/FormData.cpp \
+	network/FormData.h \
+	network/FormDataBuilder.cpp \
+	network/FormDataBuilder.h \
+	network/HTTPHeaderMap.h \
+	network/HTTPHeaderMap.cpp \
+	network/HTTPParsers.cpp \
+	network/HTTPParsers.h \
+	network/NetworkStateNotifier.cpp \
+	network/NetworkStateNotifier.h \
+	network/ProtectionSpace.cpp \
+	network/ProtectionSpace.h \
+	network/ResourceErrorBase.cpp \
+	network/ResourceErrorBase.h \
+	network/ResourceHandle.cpp \
+	network/ResourceHandle.h \
+	network/ResourceHandleClient.h \
+	network/ResourceHandleInternal.h \
+	network/ResourceRequestBase.cpp \
+	network/ResourceRequestBase.h \
+	network/ResourceResponseBase.cpp \
+	network/ResourceResponseBase.h \
+	text/AtomicString.h \
+	text/AtomicStringHash.h \
+	text/AtomicStringImpl.h \
+	text/Base64.cpp \
+	text/Base64.h \
+	text/BidiContext.cpp \
+	text/BidiContext.h \
+	text/BidiResolver.h \
+	text/CharacterNames.h \
+	text/ParserUtilities.h \
+	text/PlatformString.h \
+	text/RegularExpression.cpp \
+	text/RegularExpression.h \
+	text/SegmentedString.cpp \
+	text/SegmentedString.h \
+	text/String.cpp \
+	text/StringBuffer.h \
+	text/StringBuilder.cpp \
+	text/StringBuilder.h \
+	text/StringHash.h \
+	text/StringImpl.h \
+	text/SuffixTree.h \
+	text/TextBoundaries.h \
+	text/TextBoundaries.cpp \
+	text/TextBreakIterator.h \
+	text/TextCodec.cpp \
+	text/TextCodec.h \
+	text/TextCodecLatin1.cpp \
+	text/TextCodecLatin1.h \
+	text/TextCodecUTF16.cpp \
+	text/TextCodecUTF16.h \
+	text/TextCodecUserDefined.cpp \
+	text/TextCodecUserDefined.h \
+	text/TextDirection.h \
+	text/TextEncoding.cpp \
+	text/TextEncoding.h \
+	text/TextEncodingDetector.h \
+	text/TextEncodingDetectorNone.cpp \
+	text/TextEncodingRegistry.cpp \
+	text/TextEncodingRegistry.h \
+	text/TextStream.cpp \
+	text/TextStream.h \
+	text/UnicodeRange.cpp \
+	text/UnicodeRange.h \
+	image-decoders/ImageDecoder.h \
+	image-decoders/ImageDecoder.cpp \
+	image-decoders/bmp/BMPImageDecoder.cpp \
+	image-decoders/bmp/BMPImageDecoder.h \
+	image-decoders/bmp/BMPImageReader.cpp \
+	image-decoders/bmp/BMPImageReader.h \
+	image-decoders/gif/GIFImageDecoder.cpp \
+	image-decoders/gif/GIFImageDecoder.h \
+	image-decoders/gif/GIFImageReader.cpp \
+	image-decoders/gif/GIFImageReader.h \
+	image-decoders/ico/ICOImageDecoder.cpp \
+	image-decoders/ico/ICOImageDecoder.h \
+	image-decoders/jpeg/JPEGImageDecoder.cpp \
+	image-decoders/jpeg/JPEGImageDecoder.h \
+	image-decoders/png/PNGImageDecoder.cpp \
+	image-decoders/png/PNGImageDecoder.h \
+	graphics/MediaPlayer.cpp \
+	graphics/MediaPlayerPrivate.h \
+	graphics/filters/FEBlend.cpp \
+	graphics/filters/FEBlend.h \
+	graphics/filters/FEColorMatrix.cpp \
+	graphics/filters/FEColorMatrix.h \
+	graphics/filters/FEComponentTransfer.cpp \
+	graphics/filters/FEComponentTransfer.h \
+	graphics/filters/FEComposite.cpp \
+	graphics/filters/FEComposite.h \
+	graphics/filters/FEGaussianBlur.cpp \
+	graphics/filters/FEGaussianBlur.h \
+	graphics/filters/Filter.h \
+	graphics/filters/FilterEffect.cpp \
+	graphics/filters/FilterEffect.h \
+	graphics/filters/ImageBufferFilter.cpp \
+	graphics/filters/ImageBufferFilter.h \
+	graphics/filters/SourceAlpha.cpp \
+	graphics/filters/SourceAlpha.h \
+	graphics/filters/SourceGraphic.cpp \
+	graphics/filters/SourceGraphic.h \
+	network/SocketStreamErrorBase.cpp \
+	network/SocketStreamErrorBase.h \
+	network/SocketStreamHandleBase.cpp \
+	network/SocketStreamHandleBase.h \
+	network/SocketStreamHandleClient.h \
+	network/AuthenticationChallenge.h  \
+	network/curl/FormDataStreamCurl.cpp  \
+	network/curl/ResourceHandleCurl.cpp   \
+	network/curl/ResourceRequest.h    \
+	network/curl/SocketStreamHandleCurl.cpp \
+	network/curl/CookieJarCurl.cpp  \
+	network/curl/CookieManagerCurl.h  \
+	network/curl/CookieManagerCurl.cpp  \
+	network/curl/CookieCurl.h  \
+	network/curl/CookieCurl.cpp  \
+	network/curl/CookieArchiver.h  \
+	network/curl/CookieArchiver.cpp  \
+	network/curl/FormDataStreamCurl.h    \
+	network/curl/ResourceHandleManager.cpp  \
+	network/curl/ResourceResponse.h   \
+	network/curl/SocketStreamHandle.h \
+	network/curl/DNSCurl.cpp  \
+	network/curl/ResourceError.h   \
+	network/curl/ResourceErrorMg.cpp   \
+	network/curl/ResourceHandleManager.h  \
+	network/curl/SocketStreamError.h \
+	network/curl/FtpProtocolHandler.cpp \
+	network/curl/FtpProtocolHandler.h \
+	network/curl/ProxyMg.h \
+	network/curl/ProxyCurl.cpp \
+	$(NULL) 
+
+WEBCORE_SOURCES_MG_platform = \
+	graphics/mg/GraphicsContextMg.cpp \
+	graphics/mg/IntPointMg.cpp  \
+	graphics/mg/IntRectMg.cpp  \
+	graphics/mg/IntSizeMg.cpp \
+	mg/SharedTimerMg.cpp \
+	mg/RenderThemeMg.cpp \
+	mg/RenderThemeMg.h \
+	\
+	mg/LoggingMg.cpp \
+	graphics/mg/FontCacheMg.cpp \
+	graphics/mg/FontCustomPlatformData.h \
+	graphics/mg/FontCustomPlatformDataMg.cpp \
+	graphics/mg/FontMg.cpp \
+	graphics/mg/FontPlatformData.h \
+	graphics/mg/FontPlatformDataMg.cpp \
+	graphics/mg/GlyphPageTreeNodeMg.cpp \
+	graphics/mg/SimpleFontDataMg.cpp \
+	graphics/mg/ImageMg.cpp	\
+	graphics/mg/IconMg.cpp	\
+	graphics/mg/CertificateMg.h \
+	graphics/mg/CertificateMg.cpp \
+	mg/PlatformKeyboardEventMg.cpp \
+	mg/PlatformWheelEventMg.cpp \
+	mg/PlatformMouseEventMg.cpp \
+	mg/PlatformScreenMg.cpp \
+	mg/WidgetMg.cpp \
+	mg/PopupMenuMg.cpp \
+	mg/CursorMg.cpp \
+	image-decoders/mg/ImageDecoderMg.cpp \
+	\
+	posix/FileSystemPOSIX.cpp \
+	mg/FileSystemMg.h \
+	mg/FileSystemMg.cpp \
+	mg/FileChooserMg.cpp \
+	mg/LocalizedStringsMg.cpp \
+	mg/Language.cpp \
+	mg/KURLMg.cpp \
+	mg/SoundMg.cpp \
+	mg/TemporaryLinkStubs.cpp \
+	mg/DragImageMg.cpp \
+	mg/SharedBufferMg.cpp \
+	mg/ScrollbarThemeMg.h \
+	mg/ScrollbarThemeMg.cpp \
+	mg/MIMETypeRegistryMg.cpp \
+	mg/SearchPopupMenuMg.cpp \
+	mg/MIMETypeMg.cpp \
+	mg/MIMETypeMg.h \
+	\
+	graphics/mg/ImageBufferData.h \
+	mg/DragDataMg.cpp \
+	mg/ClipboardMg.cpp \
+	mg/ClipboardMg.h \
+	mg/PasteboardMg.cpp \
+	mg/ContextMenuMg.cpp \
+	mg/ContextMenuItemMg.cpp \
+	mg/SchemeExtension.cpp \
+	mg/SchemeExtension.h \
+	$(NULL) 
+
+# ----
+# icu unicode backend
+# ----
+if USE_ICU_UNICODE
+WEBCORE_SOURCES_MG_platform += \
+	text/TextCodecICU.cpp \
+	text/TextCodecICU.h \
+	text/TextBreakIteratorICU.cpp \
+	text/TextBreakIteratorInternalICU.h \
+	text/mg/TextBreakIteratorInternalICUMg.cpp 
+endif
+
+# ----
+# minigui unicode backend
+# ----
+if USE_MINIGUI_UNICODE
+WEBCORE_SOURCES_MG_platform += \
+	text/mg/LineBreakMg.c \
+	text/mg/LineBreakMg.h \
+	text/mg/TextBoundaryMg.c \
+	text/mg/TextBoundaryMg.h \
+	text/mg/TextBreakIteratorMg.cpp \
+	text/mg/TextCodecMg.cpp \
+	text/mg/TextCodecMg.h
+endif
+
+# ----
+# gstreamer support to play video and audio
+# ----
+if ENABLE_VIDEO
+WEBCORE_SOURCES_MG_platform += \
+	graphics/gstreamer/DataSourceGStreamer.cpp \
+	graphics/gstreamer/MediaPlayerPrivateGStreamer.cpp \
+	graphics/gstreamer/DataSourceGStreamer.h \
+	graphics/gstreamer/MediaPlayerPrivateGStreamer.h \
+	graphics/gstreamer/GOwnPtrGStreamer.cpp  \
+	graphics/gstreamer/GOwnPtrGStreamer.h  \
+	graphics/gstreamer/ImageGStreamerMG.cpp  \
+	graphics/gstreamer/ImageGStreamer.h  \
+	graphics/gstreamer/VideoSinkGStreamer.cpp \
+	graphics/gstreamer/VideoSinkGStreamer.h \
+	graphics/gstreamer/WebKitWebSourceGStreamer.cpp \
+	graphics/gstreamer/WebKitWebSourceGStreamer.h 
+endif
+
+# ----
+# cairo minigui as graphic backend
+# ----
+if USE_CAIRO_MG
+WEBCORE_SOURCES_MG_platform += \
+	graphics/mg/CairoPath.h  \
+	graphics/mg/GraphicsContextPlatformPrivateCairo.h \
+	graphics/mg/GraphicsContextCairo.h \
+	graphics/mg/GraphicsContextCairo.cpp \
+	graphics/mg/TransformationMatrixCairo.cpp \
+	graphics/mg/PatternCairo.cpp \
+    graphics/mg/GradientCairo.cpp \
+	graphics/mg/ImageBufferCairo.cpp \
+	graphics/mg/PathCairo.cpp
+else
+WEBCORE_SOURCES_MG_platform += \
+    graphics/mg/GradientMg.cpp \
+    graphics/mg/ImageBufferMg.cpp \
+	graphics/mg/PathMg.cpp
+endif
+if ENABLE_DATABASE
+WEBCORE_SOURCES_MG_platform += \
+    sql/SQLValue.cpp \
+    sql/SQLValue.h \
+    sql/SQLiteAuthorizer.cpp \
+    sql/SQLiteDatabase.cpp \
+    sql/SQLiteDatabase.h \
+    sql/SQLiteFileSystem.cpp \
+    sql/SQLiteFileSystem.h \
+    sql/SQLiteStatement.cpp \
+    sql/SQLiteStatement.h \
+    sql/SQLiteTransaction.cpp \
+    sql/SQLiteTransaction.h
+endif
+noinst_LTLIBRARIES=libplatform.la
+
+libplatform_la_SOURCES=$(WEBCORE_SOURCES_MG_platform) $(WEBCORE_SOURCES_platform) 
+
+libplatform_la_CXXFLAGS = \
+     $(global_cxxflags) \
+     $(corekit_cflags)
+
+libplatform_la_CFLAGS = \
+     $(global_cflags) \
+     $(corekit_cflags)
+
+libplatform_la_CPPFLAGS = \
+     $(corekit_cppflags) \
+     $(webkitmg_cppflags)

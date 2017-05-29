@@ -1,0 +1,57 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_inspector = \
+	ConsoleMessage.cpp \
+	ConsoleMessage.h \
+	InjectedScript.cpp \
+	InjectedScript.h \
+	InjectedScriptHost.cpp \
+	InjectedScriptHost.h \
+	InspectorBackend.cpp \
+	InspectorBackend.h \
+	InspectorCSSStore.cpp \
+	InspectorCSSStore.h \
+	InspectorDatabaseResource.cpp \
+	InspectorDatabaseResource.h \
+	InspectorDOMAgent.cpp \
+	InspectorDOMAgent.h \
+	InspectorDOMStorageResource.cpp \
+	InspectorDOMStorageResource.h \
+	InspectorClient.h \
+	InspectorController.cpp \
+	InspectorController.h \
+	InspectorFrontend.cpp \
+	InspectorFrontend.h \
+	InspectorFrontendClient.h \
+	InspectorFrontendClientLocal.cpp \
+	InspectorFrontendClientLocal.h \
+	InspectorFrontendHost.cpp \
+	InspectorFrontendHost.h \
+	InspectorResource.cpp \
+	InspectorResource.h \
+	InspectorTimelineAgent.cpp \
+	InspectorTimelineAgent.h \
+	InspectorWorkerResource.h \
+	ScriptBreakpoint.h \
+	ScriptDebugListener.h \
+	TimelineRecordFactory.cpp \
+	TimelineRecordFactory.h \
+	$(NULL) 
+
+noinst_LTLIBRARIES=libinspector.la
+
+libinspector_la_SOURCES=$(WEBCORE_SOURCES_inspector)
+
+libinspector_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libinspector_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libinspector_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)

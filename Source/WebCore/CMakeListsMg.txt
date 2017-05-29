@@ -1,0 +1,209 @@
+LIST(APPEND WebCore_INCLUDE_DIRECTORIES
+    "${WEBCORE_DIR}/platform/mg"
+    "${WEBCORE_DIR}/platform/text/mg"
+    "${WEBCORE_DIR}/platform/graphics/mg"
+    "${WEBCORE_DIR}/page/mg"
+    "${WEBCORE_DIR}/accessibility/mg"
+    "${WEBKIT_DIR}/mg/WebCoreSupport"
+    "${WEBKIT_DIR}/mg/control"
+
+    "${WEBCORE_DIR}/platform/network/curl"
+)
+
+LIST(APPEND WebCore_SOURCES
+    bindings/js/mg/ScriptControllerMg.cpp
+    page/mg/DragControllerMg.cpp
+    page/mg/EventHandlerMg.cpp
+    page/mg/FrameMg.cpp
+    platform/mg/CertificateMg.cpp
+    platform/mg/ClipboardMg.cpp
+    platform/mg/ContextMenuMg.cpp
+    platform/mg/ContextMenuItemMg.cpp
+    platform/mg/CursorMg.cpp
+    platform/mg/DragDataMg.cpp
+    platform/mg/DragImageMg.cpp
+    platform/mg/FileChooserMg.cpp
+    platform/mg/FileSystemMg.cpp
+    platform/mg/KURLMg.cpp
+    platform/mg/LanguageMg.cpp
+    platform/mg/LocalizedStringsMg.cpp
+    platform/mg/LoggingMg.cpp
+    platform/mg/MIMETypeMg.cpp
+    platform/mg/MIMETypeRegistryMg.cpp
+    platform/mg/PasteboardMg.cpp
+    platform/mg/PlatformKeyboardEventMg.cpp
+    platform/mg/PlatformMouseEventMg.cpp
+    platform/mg/PlatformScreenMg.cpp
+    platform/mg/PlatformWheelEventMg.cpp
+    platform/mg/PopupMenuMg.cpp
+    platform/mg/RenderThemeMg.cpp
+    platform/mg/ScrollbarThemeMg.cpp
+    platform/mg/SearchPopupMenuMg.cpp
+    platform/mg/SharedBufferMg.cpp
+    platform/mg/SharedTimerMg.cpp
+    platform/mg/SchemeExtension.cpp
+    platform/mg/SoundMg.cpp
+    platform/mg/TemporaryLinkStubs.cpp
+    platform/mg/WidgetMg.cpp
+    platform/graphics/mg/FontMg.cpp
+    platform/graphics/mg/FontCacheMg.cpp
+    platform/graphics/mg/FontCustomPlatformDataMg.cpp
+    platform/graphics/mg/FontPlatformDataMg.cpp
+    platform/graphics/mg/GlyphPageTreeNodeMg.cpp
+    platform/graphics/mg/GraphicsContextMg.cpp
+    platform/graphics/mg/IconMg.cpp
+    platform/graphics/mg/ImageMg.cpp
+    platform/graphics/mg/IntPointMg.cpp
+    platform/graphics/mg/IntRectMg.cpp
+    platform/graphics/mg/IntSizeMg.cpp
+    platform/graphics/mg/MDBitmap.cpp
+    platform/graphics/mg/SimpleFontDataMg.cpp
+    platform/posix/FileSystemPOSIX.cpp
+    platform/text/mg/TextBreakIteratorInternalICUMg.cpp
+
+    platform/graphics/ImageSource.cpp
+    platform/image-decoders/ImageDecoder.cpp
+    platform/image-decoders/bmp/BMPImageDecoder.cpp
+    platform/image-decoders/bmp/BMPImageReader.cpp
+    platform/image-decoders/gif/GIFImageDecoder.cpp
+    platform/image-decoders/gif/GIFImageReader.cpp
+    platform/image-decoders/ico/ICOImageDecoder.cpp
+    platform/image-decoders/jpeg/JPEGImageDecoder.cpp
+    platform/image-decoders/png/PNGImageDecoder.cpp
+    platform/image-decoders/webp/WEBPImageDecoder.cpp
+    platform/posix/FileSystemPOSIX.cpp
+
+    platform/image-decoders/mg/ImageDecoderMg.cpp
+
+    platform/network/curl/CookieJarCurl.cpp
+    platform/network/curl/CookieManagerCurl.cpp
+    platform/network/curl/CookieCurl.cpp
+    platform/network/curl/CookieArchiver.cpp
+    platform/network/curl/DNSCurl.cpp
+    platform/network/curl/FtpProtocolHandler.cpp
+    platform/network/curl/FormDataStreamCurl.cpp
+    platform/network/curl/ProxyServerCurl.cpp
+    platform/network/curl/ProxyCurl.cpp
+    platform/network/curl/ResourceErrorMg.cpp
+    platform/network/curl/ResourceHandleCurl.cpp
+    platform/network/curl/ResourceHandleManager.cpp
+    platform/network/curl/SocketStreamHandleCurl.cpp
+)
+
+IF (ENABLE_CAIRO_MG)
+    LIST(APPEND WebCore_SOURCES
+        platform/graphics/mg/GraphicsContextCairo.cpp 
+        platform/graphics/mg/TransformationMatrixCairo.cpp
+        platform/graphics/mg/PatternCairo.cpp
+        platform/graphics/mg/GradientCairo.cpp
+        platform/graphics/mg/ImageBufferCairo.cpp
+        platform/graphics/mg/ContextShadowCairo.cpp
+        platform/graphics/mg/PlatformContextCairo.cpp
+        platform/graphics/mg/CairoUtilities.cpp
+        platform/graphics/mg/RefPtrCairo.cpp
+        platform/graphics/mg/OwnPtrCairo.cpp
+        platform/graphics/mg/PathCairo.cpp
+    )
+
+ELSE ()
+    LIST(APPEND WebCore_SOURCES
+        platform/graphics/mg/GradientMg.cpp
+        platform/graphics/mg/ImageBufferMg.cpp
+        platform/graphics/mg/PathMg.cpp
+    )
+ENDIF (ENABLE_CAIRO_MG)
+
+IF (WTF_USE_ICU_UNICODE)
+    LIST(APPEND WebCore_SOURCES
+        editing/SmartReplaceICU.cpp
+        platform/text/TextEncodingDetectorICU.cpp
+        platform/text/TextBreakIteratorICU.cpp
+        platform/text/TextCodecICU.cpp
+    )
+ELSEIF (WTF_USE_MINIGUI_UNICODE)
+    LIST(APPEND WebCore_SOURCES
+        platform/text/mg/LineBreakMg.c 
+        platform/text/mg/TextBoundaryMg.c
+        platform/text/mg/TextBreakIteratorMg.cpp
+        platform/text/mg/TextCodecMg.cpp
+        platform/text/TextEncodingDetectorNone.cpp
+    )
+
+    LIST(APPEND WebCore_INCLUDE_DIRECTORIES
+        ${ICU_INCLUDE_DIRS}
+        ${JAVASCRIPTCORE_DIR}/mg/
+        ${JAVASCRIPTCORE_DIR}/wtf/unicode/mg/
+    )
+ENDIF ()
+
+IF (ENABLE_VIDEO)
+    LIST(APPEND WebCore_SOURCES
+        platform/graphics/gstreamer/DataSourceGStreamer.cpp
+        platform/graphics/gstreamer/GOwnPtrGStreamer.cpp
+        platform/graphics/gstreamer/GRefPtrGStreamer.cpp
+        platform/graphics/gstreamer/GStreamerGWorld.cpp
+        platform/graphics/gstreamer/ImageGStreamerMg.cpp
+        platform/graphics/gstreamer/MediaPlayerPrivateGStreamer.cpp
+        platform/graphics/gstreamer/PlatformVideoWindowMg.cpp
+        platform/graphics/gstreamer/VideoSinkGStreamer.cpp
+        platform/graphics/gstreamer/WebKitWebSourceGStreamer.cpp
+        rendering/RenderMediaControlsMg.cpp
+    )
+ENDIF (ENABLE_VIDEO)
+
+IF (ENABLE_DISK_CACHE)
+    LIST(APPEND WebCore_SOURCES
+        loader/cache/disk_cache/backend_impl.cpp
+        loader/cache/disk_cache/cache_addr.cpp 
+        loader/cache/disk_cache/cache_bitmap.cpp 
+        loader/cache/disk_cache/cache_block_files.cpp 
+        loader/cache/disk_cache/cache_entry_impl.cpp 
+        loader/cache/disk_cache/cache_eviction.cpp 
+        loader/cache/disk_cache/cache_hash.cpp 
+        loader/cache/disk_cache/cache_rankings.cpp 
+        loader/cache/disk_cache/cache_ref_counted.cpp 
+        loader/cache/disk_cache/cache_time.cpp 
+        loader/cache/disk_cache/cache_util_posix.cpp 
+        loader/cache/disk_cache/file_path.cpp 
+        loader/cache/disk_cache/file_posix.cpp 
+        loader/cache/disk_cache/file_util_posix.cpp 
+        loader/cache/disk_cache/HttpCache.cpp 
+        loader/cache/disk_cache/mapped_file_posix.cpp 
+        loader/cache/disk_cache/platform_file_posix.cpp 
+        loader/cache/disk_cache/string_util.cpp 
+        loader/cache/disk_cache/time_posix.cpp    
+        )
+ENDIF (ENABLE_DISK_CACHE)
+
+IF (ENABLE_PLUGIN)
+    LIST(APPEND WebCore_SOURCES
+        plugins/mg/PluginApiMg.cpp
+        plugins/mg/PluginApiMg.h
+        plugins/mg/PluginDataMg.cpp
+        plugins/mg/PluginPackageMg.cpp
+        plugins/mg/PluginViewMg.cpp
+    )
+ELSE () 
+    LIST(APPEND WebCore_SOURCES
+        plugins/PluginDataNone.cpp
+        plugins/PluginViewNone.cpp
+        plugins/PluginPackageNone.cpp
+    )
+ENDIF ()
+
+ADD_DEFINITIONS(-DWTF_USE_CROSS_PLATFORM_CONTEXT_MENUS=1)
+
+IF (ENABLE_NETSCAPE_PLUGIN_API)
+    SET (WEBCORE_INSTALL_DIR include/${CMAKE_PROJECT_NAME})
+    INSTALL (FILES  "${WEBCORE_DIR}/bridge/npapi.h"
+        DESTINATION ${WEBCORE_INSTALL_DIR})
+
+    INSTALL (FILES  "${WEBCORE_DIR}/bridge/npruntime.h"
+        DESTINATION ${WEBCORE_INSTALL_DIR})
+
+    INSTALL (FILES  "${WEBCORE_DIR}/bridge/nptypes.h"
+        DESTINATION ${WEBCORE_INSTALL_DIR})
+
+    INSTALL (FILES  "${WEBCORE_DIR}/plugins/npfunctions.h"
+        DESTINATION ${WEBCORE_INSTALL_DIR})
+ENDIF (ENABLE_NETSCAPE_PLUGIN_API)

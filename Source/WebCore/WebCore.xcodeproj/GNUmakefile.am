@@ -1,0 +1,22 @@
+BASEINCLUDE=../
+include ../../GNUmakefile_shared
+NULL=
+WEBCORE_SOURCES_WebCore.xcodeproj = \
+      $(NULL) 
+
+noinst_LTLIBRARIES=libWebCore.xcodeproj.la
+
+libWebCore.xcodeproj_la_SOURCES=$(WEBCORE_SOURCES_WebCore.xcodeproj)
+
+libWebCore.xcodeproj_la_CXXFLAGS = \
+      $(global_cxxflags) \
+     $(corekit_cflags)
+
+libWebCore.xcodeproj_la_CFLAGS = \
+      $(global_cflags) \
+     $(corekit_cflags)
+
+libWebCore.xcodeproj_la_CPPFLAGS = \
+      $(corekit_cppflags) \
+      $(webkitmg_cppflags) \
+     $(HILDON_CPPFLAGS)
