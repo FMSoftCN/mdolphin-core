@@ -2,7 +2,7 @@ AC_PREREQ(2.59)
 
 m4_define([mdolphin_major_version], [3])
 m4_define([mdolphin_minor_version], [0])
-m4_define([mdolphin_micro_version], [4])
+m4_define([mdolphin_micro_version], [5])
 
 AC_INIT([libmdolphin],[mdolphin_major_version.mdolphin_minor_version.mdolphin_micro_version],[http://bugs.webkit.org/])
 
@@ -124,6 +124,8 @@ DOLT
 #if test -z "$GPERF"; then
 #   AC_MSG_ERROR([You need the 'gperf' hash function generator to compile WebKit])
 #fi
+
+AC_CHECK_HEADERS(unicode/utypes.h unicode/utf_old.h)
 
 # pthread (not needed on Windows)
 if test "$os_win32" = "no"; then

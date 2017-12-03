@@ -36,6 +36,12 @@ typedef int8_t UBool;
 #   define FALSE 0
 #endif
 
+#ifdef HAVE_UNICODE_UTYPES_H
+
+#include <unicode/utypes.h>
+
+#else
+
 /*===========================================================================*/
 /* UErrorCode */
 /*===========================================================================*/
@@ -254,6 +260,8 @@ typedef enum UErrorCode {
 #define U_SUCCESS(x) ((x)<=U_ZERO_ERROR)
 
 #define U_FAILURE(x) ((x)>U_ZERO_ERROR)
+
+#endif /* HAVE_UNICODE_UTYPES_H */
 
 /*===========================================================================*/
 /* UClassID-based RTTI */

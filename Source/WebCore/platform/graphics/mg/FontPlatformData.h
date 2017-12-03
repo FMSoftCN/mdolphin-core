@@ -98,7 +98,7 @@ public:
     unsigned hash() const
     { 
         if (!useCairo())
-            return m_mgfont ? m_mgfont->hash() : NULL;
+            return m_mgfont ? m_mgfont->hash() : 0;
 #if ENABLE(CAIRO_MG)
 #if USE(FREETYPE)
         return PtrHash<cairo_scaled_font_t*>::hash(m_scaledFont);

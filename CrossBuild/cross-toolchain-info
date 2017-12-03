@@ -1,0 +1,34 @@
+
+# The cross-toolchain info
+INST_PREFIX_ADD=/home/toolchain/output/staging/usr
+CROSS_TOOL_BIN=/home/toolchain/output/staging/usr/bin
+CROSS_TOOL_TARGET=arm-linux-uclibcgnueabi-
+export PATH=$CROSS_TOOL_BIN:$PATH
+export PKG_CONFIG_PATH=${INST_PREFIX_ADD}/lib/pkgconfig
+
+CROSS_CC=${CROSS_TOOL_TARGET}gcc
+CROSS_CXX=${CROSS_TOOL_TARGET}g++
+CROSS_CPPFLAGS=""
+CROSS_CFLAGS="-O2 -fPIC -I${INST_PREFIX_ADD}/include"
+CROSS_CXXFLAGS=""
+CROSS_LDFLAGS="-L${INST_PREFIX_ADD}/lib"
+CROSS_RANLIB=${CROSS_TOOL_TARGET}ranlib
+CROSS_STRIP=${CROSS_TOOL_TARGET}strip
+
+WITH_FT2_INCLUDES=$INST_PREFIX_ADD/include/freetype2
+
+# The installation path prefix of libraries in your building system
+SYS_INST_PREFIX=$INST_PREFIX_ADD
+
+# the default installation path of ADPs
+DEF_ADP_INST_PATH=$INST_PREFIX_ADD
+
+PLATFORM=arm
+NR_MAKE_JOBS=5
+
+CROSS_CONFIG_OPTS=" \
+    --disable-static \
+    --build=i386-linux \
+    --host=${PLATFORM}-linux \
+    --target=${PLATFORM}-linux"
+

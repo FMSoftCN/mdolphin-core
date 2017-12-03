@@ -12,6 +12,8 @@
  ** Create date: 2010-12-13
 */
 
+#include <unistd.h>
+
 #include "minigui.h"
 #include "config.h"
 

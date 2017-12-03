@@ -84,12 +84,16 @@ enum {
  */
 #define U_COMPARE_IGNORE_CASE       0x10000
 
+#ifndef HAVE_UNICODE_UTF_OLD_H
+
 #define UTF_IS_SECOND_SURROGATE(uchar)  U16_IS_TRAIL(uchar)
 #define UTF_IS_TRAIL(uchar)             U16_IS_TRAIL(uchar)
 #define UTF_IS_SURROGATE(uchar)         U_IS_SURROGATE(uchar)
 #define UTF_IS_SURROGATE_FIRST(c)       U16_IS_SURROGATE_LEAD(c)
 #define UTF_IS_FIRST_SURROGATE(uchar)   U_IS_SURROGATE(uchar)
 #define UTF_IS_LEAD(uchar)              U16_IS_LEAD(uchar)
+
+#endif /* HAVE_UNICODE_UTF_OLD_H */
 
 enum {
     /* FCD check: everything below this code point is known to have a 0 lead combining class */
@@ -308,10 +312,6 @@ int32_t unorm_normalize(const UChar *src, int32_t srcLength,
         UNormalizationMode mode, int32_t options, UChar *dest, 
         int32_t destCapacity, UErrorCode *pErrorCode);
 
-#ifdef  __cplusplus
-}
-#endif
-
 /**
  * Performing quick check on a string, to quickly determine if the string is 
  * in a particular normalization format.
@@ -334,4 +334,9 @@ UNormalizationCheckResult unorm_quickCheck(const UChar *src,
         int32_t srcLength, UNormalizationMode mode, UErrorCode *pErrorCode);
 
 UBool u_lib_cleanup(void);
+
+#ifdef  __cplusplus
+}
+#endif
+
 #endif

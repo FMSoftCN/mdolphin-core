@@ -302,7 +302,7 @@ typedef struct {
 @field attributes A logically ORed set of JSPropertyAttributes to give to the property.
 */
 typedef struct {
-    const char* const name;
+    const char* name;
     JSObjectCallAsFunctionCallback callAsFunction;
     JSPropertyAttributes attributes;
 } JSStaticFunction;
