@@ -26,11 +26,12 @@ You can download all source code tarballs of above software from the following p
 ## Configure and install on Ubuntu Linux 16.04 with MiniGUI 3.2.3
 
 1. Download ubuntu-16.04.6-desktop-i386.iso from:
-    http://releases.ubuntu.com/16.04/?_ga=2.94179613.1098001605.1581330736-948418017.1558570895
+<http://releases.ubuntu.com/16.04/?_ga=2.94179613.1098001605.1581330736-948418017.1558570895>
 
 2. Install Ubuntu 16.04.6, or setup your virtual machine and install;
 
 3. In Ubuntu 16.04, install the packages after you set root password:
+```css
     $ sudo passwd root
     $ sudo apt-get install vim openssh-server autoconf cmake libpciaccess-dev libjpeg-dev libpng12-dev libfreetype6-dev libsqlite3-dev libxml2-dev chipmunk-dev libgtk2.0-dev libcurl4-openssl-dev libssl-dev libxslt-dev libc-ares-dev libbison-dev build-essential libtool
     $ sudo apt-get install -y gcc-4.8 g++-4.8
@@ -39,6 +40,7 @@ You can download all source code tarballs of above software from the following p
     $ sudo ln -s gcc-4.8.5 gcc
     $ sudo rm g++
     $ sudo ln -s g++-4.8.5 g++
+```
 
 4. Download MiniGUI software package 3.2.3 from www.fmsoft.com, and build them according to the menual;
 
