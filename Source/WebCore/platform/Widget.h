@@ -74,7 +74,8 @@ typedef QWidget* PlatformWidget;
 #endif
 
 #if PLATFORM(MG)
-typedef unsigned int HWND;
+//typedef unsigned int HWND;
+typedef void * HWND;        // gengyue
 typedef HWND PlatformWidget;
 typedef PlatformWidget PlatformPageClient;
 #endif
@@ -85,7 +86,8 @@ typedef wxWindow* PlatformWidget;
 #endif
 
 #if PLATFORM(MG)
-typedef unsigned int HWND;
+//typedef unsigned int HWND;
+typedef void * HWND;        // gengyue
 typedef HWND PlatformWidget;
 typedef PlatformWidget PlatformPageClient;
 #endif

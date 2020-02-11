@@ -87,7 +87,8 @@ struct pattern;
 #elif OS(WINCE)
 typedef struct HDC__ PlatformGraphicsContext;
 #elif PLATFORM(MG) 
-typedef unsigned int HDC;
+//typedef unsigned int HDC;
+typedef GHANDLE HDC;            // gengyue
 typedef HDC PlatformGraphicsContext;
 
 #if ENABLE(CAIRO_MG)

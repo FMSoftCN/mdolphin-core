@@ -1850,7 +1850,8 @@ void MDWebView::dealWithMDMessages(HWND hwnd, WPARAM wParam, LPARAM lParam)
     }
 }
 
-int MDWebView::WebViewWndProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+//int MDWebView::WebViewWndProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+LRESULT MDWebView::WebViewWndProc(HWND hwnd, unsigned int message, WPARAM wParam, LPARAM lParam)         // gengyue
 {
     MDWebView* view = reinterpret_cast<MDWebView*>(GetWindowAdditionalData2(hwnd));
     switch (message){

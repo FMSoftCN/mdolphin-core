@@ -1958,7 +1958,8 @@ bool validScheme(const char *scheme, int &size)
 {
     char *colon = strchr((char*)scheme, ':');
     if (colon)
-        size = (int)colon - (int)scheme;
+        //size = (int)colon - (int)scheme;
+        size = colon - scheme;  // gengyue
 
     if (! isSchemeFirstChar(scheme[0]))
         return false;

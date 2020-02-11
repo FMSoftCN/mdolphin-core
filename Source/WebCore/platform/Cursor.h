@@ -46,7 +46,8 @@ typedef HICON HCURSOR;
 #elif PLATFORM(HAIKU)
 #include <app/Cursor.h>
 #elif PLATFORM(MG)
-typedef unsigned int HCURSOR;
+//typedef unsigned int HCURSOR;
+typedef GHANDLE HCURSOR;        // gengyue
 #endif
 
 #if PLATFORM(MAC)

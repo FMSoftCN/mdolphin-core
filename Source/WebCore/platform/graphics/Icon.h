@@ -45,7 +45,8 @@ typedef struct _Evas_Object Evas_Object;
 #include "Image.h"
 #include "PlatformIcon.h"
 #elif PLATFORM(MG)
-typedef unsigned int HICON;
+//typedef unsigned int HICON;
+typedef void * HICON;   // gengyue
 #endif
 
 namespace WebCore {

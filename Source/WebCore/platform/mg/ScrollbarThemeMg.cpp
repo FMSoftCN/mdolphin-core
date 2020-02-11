@@ -106,13 +106,16 @@ static void paintScrollTrack (SCROLLPART part, HDC hdc, const IntRect &rect, boo
     {
         case HScrollTrackPart:
             {
-                SetBrushColor (hdc, DWORD2PIXEL(hdc, GetWindowElementAttr(HWND_DESKTOP, WE_MAINC_THREED_BODY)));
+                //SetBrushColor (hdc, DWORD2PIXEL(hdc, GetWindowElementAttr(HWND_DESKTOP, WE_MAINC_THREED_BODY)));
+                SetBrushColor (hdc, DWORD2Pixel(hdc, GetWindowElementAttr(HWND_DESKTOP, WE_MAINC_THREED_BODY)));    // gengyue
                 FillBox (hdc, rect.x(), rect.y(), rect.width(), rect.height());
             }
             break;
         case VScrollTrackPart:
             {
-                SetBrushColor (hdc, DWORD2PIXEL(hdc, GetWindowElementAttr(HWND_DESKTOP, WE_MAINC_THREED_BODY)));
+                //SetBrushColor (hdc, DWORD2PIXEL(hdc, GetWindowElementAttr(HWND_DESKTOP, WE_MAINC_THREED_BODY)));
+                SetBrushColor (hdc, DWORD2Pixel(hdc, GetWindowElementAttr(HWND_DESKTOP, WE_MAINC_THREED_BODY)));    // gengyue
+
                 FillBox (hdc, rect.x(), rect.y(), rect.width(), rect.height());
             }
             break;

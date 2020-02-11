@@ -31,10 +31,11 @@ AC_REQUIRE([INIT_C_CXX_FLAGS])
 saved_CFLAGS="$CFLAGS"
 CFLAGS="$CFLAGS -fvisibility=hidden -fvisibility-inlines-hidden"
 AC_MSG_CHECKING([if ${CXX} supports -fvisibility=hidden -fvisibility-inlines-hidden])
-AC_COMPILE_IFELSE([char foo;],
+# gengyue modified: add ([AC_LANG_SOURCE  ................. ])
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([char foo;],
       [ AC_MSG_RESULT([yes])
         SYMBOL_VISIBILITY="-fvisibility=hidden" SYMBOL_VISIBILITY_INLINES="-fvisibility-inlines-hidden" ],
-        AC_MSG_RESULT([no]))
+        AC_MSG_RESULT([no]))])
 CFLAGS="$saved_CFLAGS"
 AC_SUBST(SYMBOL_VISIBILITY)
 AC_SUBST(SYMBOL_VISIBILITY_INLINES)
@@ -75,7 +76,8 @@ AC_SYS_LARGEFILE
 # Check whether a C++ was found (AC_PROG_CXX sets $CXX to "g++" even when it
 # doesn't exist)
 AC_LANG_PUSH([C++])
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([],[])],[],[AC_MSG_ERROR([No C++ compiler found])])
+# gengyue modified: add ([AC_LANG_SOURCE  ................. ])
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([AC_LANG_PROGRAM([],[])],[],[AC_MSG_ERROR([No C++ compiler found])])])
 AC_LANG_POP([C++])
 
 # C/C++ Language Features

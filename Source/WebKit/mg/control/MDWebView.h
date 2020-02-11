@@ -45,7 +45,8 @@ public:
     static bool registerWebViewWindowClass();
     static bool unregisterWebViewWindowClass();
     static bool m_haveRegisteredWindowClass;
-    static int WebViewWndProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam);
+    //static int WebViewWndProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam);
+    static LRESULT WebViewWndProc(HWND hwnd, unsigned int message, WPARAM wParam, LPARAM lParam);       // gengyue
     void init(HWND hwnd);
     virtual HWND viewWindow();
     //END_MDWEBVIEW_INITWINDOW

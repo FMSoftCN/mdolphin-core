@@ -31,8 +31,10 @@
 #include "Scrollbar.h"
 #include <wtf/RefPtr.h>
 
-typedef unsigned int HWND;
-typedef unsigned int  HDC;
+//typedef unsigned int HWND;
+typedef void * HWND;        // gengyue
+//typedef unsigned int  HDC;
+typedef void *  HDC;        // gengyue
 
 namespace WebCore {
 

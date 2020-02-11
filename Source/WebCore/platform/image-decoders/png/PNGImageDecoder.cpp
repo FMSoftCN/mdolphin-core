@@ -229,6 +229,7 @@ static ColorProfile readColorProfile(png_structp png, png_infop info)
     char* profile;
     png_uint_32 profileLength;
     if (png_get_iCCP(png, info, &profileName, &compressionType, &profile, &profileLength)) {
+//    if (png_get_iCCP(png, info, &profileName, &compressionType, (unsigned char * *)(&profile), &profileLength)) {   // gengyue
         ColorProfile colorProfile;
         colorProfile.append(profile, profileLength);
         return colorProfile;

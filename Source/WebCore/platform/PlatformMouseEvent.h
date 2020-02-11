@@ -68,8 +68,10 @@ typedef unsigned long int uint32;
 #endif
 
 #if PLATFORM(MG)
-typedef unsigned int HWND;
-typedef unsigned int WPARAM;
+//typedef unsigned int HWND;
+typedef void * HWND;        // gengyue
+//typedef unsigned int WPARAM;
+typedef unsigned long WPARAM;   // gengyue
 typedef unsigned long LPARAM;
 #endif
 

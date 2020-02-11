@@ -27,7 +27,8 @@ namespace WTF {
 static WNDPROC oldDefWndProc;
 static BOOL isInitialized = FALSE;
 
-static int ThreadingWindowWndProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+//static int ThreadingWindowWndProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+static long int ThreadingWindowWndProc(HWND hwnd, unsigned int message, WPARAM wParam, LPARAM lParam) // gengyue
 {
     switch (message){
         case MSG_MDTIMER:

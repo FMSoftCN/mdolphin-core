@@ -121,7 +121,8 @@ void PopupMenuMg::show(const IntRect& r, FrameView* v, int index)
                   "popmenu",
                   WS_BORDER,
                   0x20000000L, //WS_EX_CTRLASMAIN
-                  (int)this, 
+                  //(int)this,         
+                  (LINT)this,         // gengyue
                   r.x(), r.y(), r.width(), r.height(),
                   hostWindow, (DWORD)this);
         if(m_popup == HWND_INVALID)
@@ -630,7 +631,8 @@ void PopupMenuMg::disconnectClient()
 }
 
 
-static int PopupCtrlProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+//static int PopupCtrlProc(HWND hwnd, int message, WPARAM wParam, LPARAM lParam)
+static LRESULT PopupCtrlProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)     // gengyue
 {
 	PopupMenuMg * popup;
 

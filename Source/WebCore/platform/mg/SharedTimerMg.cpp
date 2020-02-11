@@ -32,7 +32,8 @@ void setSharedTimerFiredFunction(void (*f)())
 }
 
 
-static BOOL timerFired(HWND, int, DWORD)
+//static BOOL timerFired(HWND, int, DWORD)
+static BOOL timerFired(HWND, LINT, DWORD)   // gengyue
 {
     if (sharedTimerFiredFunction)
         sharedTimerFiredFunction();

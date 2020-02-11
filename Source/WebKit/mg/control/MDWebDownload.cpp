@@ -207,7 +207,8 @@ void MDWebDownload::setMDDownloadInfo(ResourceHandle* job, MDDownloadInfo* data,
         const char* ptr /* 0 */, int length /* 0 */)
 {
     ResourceHandleInternal* d = job->getInternal();
-    data->id = (int)d->m_handle;
+    //data->id = (int)d->m_handle;
+    data->id = (long)(d->m_handle);     // gengyue
     data->url = copyStringToUtf8Char(job->firstRequest().url().string());
     data->totalSize = d->m_response.expectedContentLength();
     if (!d->m_response.suggestedFilename().isEmpty())
