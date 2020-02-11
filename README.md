@@ -26,6 +26,7 @@ You can download all source code tarballs of above software from the following p
 ## Configure and install on Ubuntu Linux 16.04 with MiniGUI 3.2.3
 
 1. Download ubuntu-16.04.6-desktop-i386.iso from:
+
     http://releases.ubuntu.com/16.04/?_ga=2.94179613.1098001605.1581330736-948418017.1558570895
 
 2. Install Ubuntu 16.04.6, or setup your virtual machine and install;
