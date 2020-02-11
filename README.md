@@ -26,7 +26,7 @@ You can download all source code tarballs of above software from the following p
 ## Configure and install on Ubuntu Linux 16.04 with MiniGUI 3.2.3
 
 1. Download ubuntu-16.04.6-desktop-i386.iso from:
-<http://releases.ubuntu.com/16.04/?_ga=2.94179613.1098001605.1581330736-948418017.1558570895>
+    http://releases.ubuntu.com/16.04/?_ga=2.94179613.1098001605.1581330736-948418017.1558570895
 
 2. Install Ubuntu 16.04.6, or setup your virtual machine and install;
 
@@ -45,6 +45,7 @@ You can download all source code tarballs of above software from the following p
 4. Download MiniGUI software package 3.2.3 from www.fmsoft.com, and build them according to the menual;
 
 5. In the older version of Ubuntu, libicu-dev was not in the distribution, but in Ubuntu 16.04, it was installed by default. In the compiling process, the compiler will use libicu-dev package, but not the code in the icu directory. So remove it first:
+```css
     $ sudo apt-get autoremove libicu-dev
         Reading package lists... Done
         Building dependency tree
@@ -58,37 +59,46 @@ You can download all source code tarballs of above software from the following p
         After this operation, 45.3 MB disk space will be freed.
         Do you want to continue? [Y/n] n
         Abort.
+```
     Then answers: "Y".
 
-6. Download libxml2-dev and libxslt1-dev from
-    http://www.minigui.com/download
-    compile and install them with:
+6. Download libxml2-dev and libxslt1-dev from http://www.minigui.com/download, compile and install them with:
+```css
     $ tar zxf libxxxxxxx
     $ cd libxxxxxxx
     $ ./configure
     $ sudo make install
+```
 
 7. Get mdolphine-core and mdolphin-sample from git:
+```css
     $ git clone https://github.com/FMSoftCN/mdolphin-core.git
     $ git clone https://github.com/FMSoftCN/mdolphin-samples.git
+```
     
 8. Compile mdolpine library:
+```css
     $ cd mdolphin-core
     $ ./autogen.sh
     $ ./configure
     $ make
     $ sudo make install
+```
 
 9. Compile
+```css
     $ cd mdolphin-samples
     $ ./autogen.sh
     $ configure
     $ cd pc
     $ make
+```
    Then you get the app: mdolphin_app
    
 10. After develop mdolphin, do not forget installing libicu-dev:
+```css
     $ sudo apt-get install libicu-dev
+```
 
 
 ## Cross compliation
